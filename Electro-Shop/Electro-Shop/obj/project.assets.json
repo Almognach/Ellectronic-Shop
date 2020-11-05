@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "G:\\פרוייקט\\Ellectronic-Shop\\Electro-Shop\\Electro-Shop\\Electro-Shop.csproj",
+      "projectUniqueName": "G:\\פרוייקט\\Electronic-Shop\\Electro-Shop\\Electro-Shop\\Electro-Shop.csproj",
       "projectName": "Electro-Shop",
-      "projectPath": "G:\\פרוייקט\\Ellectronic-Shop\\Electro-Shop\\Electro-Shop\\Electro-Shop.csproj",
+      "projectPath": "G:\\פרוייקט\\Electronic-Shop\\Electro-Shop\\Electro-Shop\\Electro-Shop.csproj",
       "packagesPath": "C:\\Users\\almog\\.nuget\\packages\\",
-      "outputPath": "G:\\פרוייקט\\Ellectronic-Shop\\Electro-Shop\\Electro-Shop\\obj\\",
+      "outputPath": "G:\\פרוייקט\\Electronic-Shop\\Electro-Shop\\Electro-Shop\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\almog\\AppData\\Roaming\\NuGet\\NuGet.Config",
