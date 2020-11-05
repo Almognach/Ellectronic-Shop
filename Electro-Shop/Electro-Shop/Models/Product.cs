@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -7,13 +8,14 @@ namespace Electro_Shop.Models
 {
     public class Product
     {
+        [Key]
         public int Id { get; set; }
         public string Name { get; set; }
         public double Price { get; set; }
         public string Description { get; set; }
         public Category Category { get; set; }
-        public uint SalesCounter { get; set; }
-        public uint InStock { get; set; }
+        public int SalesCounter { get; set; }
+        public int InStock { get; set; }
         public Uri PathToImage { get; set; }
 
     }
