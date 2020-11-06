@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Electro_Shop.Migrations
+namespace Electro_Shop.Migrations.Category
 {
     [DbContext(typeof(CategoryContext))]
     partial class CategoryContextModelSnapshot : ModelSnapshot

@@ -7,10 +7,10 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Electro_Shop.Migrations
+namespace Electro_Shop.Migrations.Category
 {
     [DbContext(typeof(CategoryContext))]
-    [Migration("20201105211715_Category")]
+    [Migration("20201106112849_Category")]
     partial class Category
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

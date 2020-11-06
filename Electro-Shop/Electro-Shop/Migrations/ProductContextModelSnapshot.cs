@@ -4,16 +4,14 @@ using Electro_Shop.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Electro_Shop.Migrations.Product
+namespace Electro_Shop.Migrations
 {
     [DbContext(typeof(ProductContext))]
-    [Migration("20201105213640_Product")]
-    partial class Product
+    partial class ProductContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,16 +46,19 @@ namespace Electro_Shop.Migrations.Product
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Brand")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int?>("CategoryId")
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long>("InStock")
-                        .HasColumnType("bigint");
+                    b.Property<int>("InStock")
+                        .HasColumnType("int");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Model")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PathToImage")
@@ -66,8 +67,8 @@ namespace Electro_Shop.Migrations.Product
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
-                    b.Property<long>("SalesCounter")
-                        .HasColumnType("bigint");
+                    b.Property<int>("SalesCounter")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

@@ -54,7 +54,7 @@ namespace Electro_Shop.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Price,Description,SalesCounter,InStock,PathToImage")] Product product)
+        public async Task<IActionResult> Create([Bind("Id,Brand,Model,Price,Description,SalesCounter,InStock,PathToImage")] Product product)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace Electro_Shop.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Price,Description,SalesCounter,InStock,PathToImage")] Product product)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Brand,Model,Price,Description,SalesCounter,InStock,PathToImage")] Product product)
         {
             if (id != product.Id)
             {
