@@ -1,8 +1,309 @@
-﻿@{
+﻿@model Electro_Shop.Models.BestSeller
+@{
     ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+@section Scripts {
+
+    <script>$('.carousel').carousel({
+            interval: 5000
+        })</script>
+
+}
+
+
+
+@*Best sellers carousel*@
+
+
+<div class="shop-items">
+    <div class="container-fluid">
+        @*Best sellers carousel*@
+        <a class="nav-link text-dark" asp-area="" asp-controller="BestSellers" asp-action="Index"> Best Selling products</a>
+        <div class="container my-4">
+            <link rel="stylesheet" href="~/css/bestsellers.css" />
+
+            <hr class="my-4">
+
+            <!--Carousel Wrapper-->
+            <div id="multi-item-example" class="carousel slide carousel-multi-item" data-ride="carousel">
+
+                <!--Controls-->
+                <div class="controls-top">
+                    <a class="btn-floating" href="#multi-item-example" data-slide="prev"><i class="fa fa-chevron-left"></i></a>
+                    <a class="btn-floating" href="#multi-item-example" data-slide="next"><i class="fa fa-chevron-right"></i></a>
+                </div>
+                <!--/.Controls-->
+                <!--Indicators-->
+                <ol class="carousel-indicators">
+                    <li data-target="#multi-item-example" data-slide-to="0" class="active"></li>
+                    <li data-target="#multi-item-example" data-slide-to="1"></li>
+                    <li data-target="#multi-item-example" data-slide-to="2"></li>
+                </ol>
+                <!--/.Indicators-->
+                <!--Slides-->
+                <div class="carousel-inner" role="listbox">
+
+                    <!--First slide-->
+                    <div class="carousel-item active">
+
+                        <div class="row">
+                            <div class="col-md-3 col-sm-6">
+                                <!-- Restaurant Item -->
+                                <div class="item">
+                                    <!-- Item's image -->
+                                    <img class="img-responsive" src="@Model.Products.ElementAt(0).PathToImage" alt="">
+                                    <!-- Item details -->
+                                    <div class="item-dtls">
+                                        <!-- product title -->
+                                        <h4><a href="#">@Model.Products.ElementAt(0).Brand @Model.Products.ElementAt(0).Model </a></h4>
+                                        <!-- price -->
+                                        <span class="price lblue">₪@Model.Products.ElementAt(0).Price</span>
+                                    </div>
+                                    <!-- add to cart btn -->
+                                    <div class="ecom bg-lblue">
+                                        <a class="btn" href="#">Add to cart</a>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-3 col-sm-6">
+                                <!-- Restaurant Item -->
+                                <div class="item">
+                                    <!-- Item's image -->
+                                    <img class="img-responsive" src="@Model.Products.ElementAt(1).PathToImage" alt="">
+                                    <!-- Item details -->
+                                    <div class="item-dtls">
+                                        <!-- product title -->
+                                        <h4><a href="#">@Model.Products.ElementAt(1).Brand @Model.Products.ElementAt(1).Model </a></h4>
+                                        <!-- price -->
+                                        <span class="price lblue">₪@Model.Products.ElementAt(1).Price</span>
+                                    </div>
+                                    <!-- add to cart btn -->
+                                    <div class="ecom bg-lblue">
+                                        <a class="btn" href="#">Add to cart</a>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-3 col-sm-6">
+                                <!-- Restaurant Item -->
+                                <div class="item">
+                                    <!-- Item's image -->
+                                    <img class="img-responsive" src="@Model.Products.ElementAt(2).PathToImage" alt="">
+                                    <!-- Item details -->
+                                    <div class="item-dtls">
+                                        <!-- product title -->
+                                        <h4><a href="#">@Model.Products.ElementAt(2).Brand @Model.Products.ElementAt(2).Model </a></h4>
+                                        <!-- price -->
+                                        <span class="price lblue">₪@Model.Products.ElementAt(2).Price</span>
+                                    </div>
+                                    <!-- add to cart btn -->
+                                    <div class="ecom bg-lblue">
+                                        <a class="btn" href="#">Add to cart</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3 col-sm-6">
+                                <!-- Restaurant Item -->
+                                <div class="item">
+                                    <!-- Item's image -->
+                                    <img class="img-responsive" src="@Model.Products.ElementAt(3).PathToImage" alt="">
+                                    <!-- Item details -->
+                                    <div class="item-dtls">
+                                        <!-- product title -->
+                                        <h4><a href="#">@Model.Products.ElementAt(3).Brand @Model.Products.ElementAt(3).Model </a></h4>
+                                        <!-- price -->
+                                        <span class="price lblue">₪@Model.Products.ElementAt(3).Price</span>
+                                    </div>
+                                    <!-- add to cart btn -->
+                                    <div class="ecom bg-lblue">
+                                        <a class="btn" href="#">Add to cart</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!--/.First slide-->
+                    <!--Second slide-->
+                    <div class="carousel-item">
+
+                        <div class="row">
+                            <div class="col-md-3 col-sm-6">
+                                <!-- Restaurant Item -->
+                                <div class="item">
+                                    <!-- Item's image -->
+                                    <img class="img-responsive" src="@Model.Products.ElementAt(4).PathToImage" alt="">
+                                    <!-- Item details -->
+                                    <div class="item-dtls">
+                                        <!-- product title -->
+                                        <h4><a href="#">@Model.Products.ElementAt(4).Brand @Model.Products.ElementAt(4).Model </a></h4>
+                                        <!-- price -->
+                                        <span class="price lblue">₪@Model.Products.ElementAt(4).Price</span>
+                                    </div>
+                                    <!-- add to cart btn -->
+                                    <div class="ecom bg-lblue">
+                                        <a class="btn" href="#">Add to cart</a>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-3 col-sm-6">
+                                <!-- Restaurant Item -->
+                                <div class="item">
+                                    <!-- Item's image -->
+                                    <img class="img-responsive" src="@Model.Products.ElementAt(5).PathToImage" alt="">
+                                    <!-- Item details -->
+                                    <div class="item-dtls">
+                                        <!-- product title -->
+                                        <h4><a href="#">@Model.Products.ElementAt(5).Brand @Model.Products.ElementAt(5).Model </a></h4>
+                                        <!-- price -->
+                                        <span class="price lblue">₪@Model.Products.ElementAt(5).Price</span>
+                                    </div>
+                                    <!-- add to cart btn -->
+                                    <div class="ecom bg-lblue">
+                                        <a class="btn" href="#">Add to cart</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3 col-sm-6">
+                                <!-- Restaurant Item -->
+                                <div class="item">
+                                    <!-- Item's image -->
+                                    <img class="img-responsive" src="@Model.Products.ElementAt(6).PathToImage" alt="">
+                                    <!-- Item details -->
+                                    <div class="item-dtls">
+                                        <!-- product title -->
+                                        <h4><a href="#">@Model.Products.ElementAt(6).Brand @Model.Products.ElementAt(6).Model </a></h4>
+                                        <!-- price -->
+                                        <span class="price lblue">₪@Model.Products.ElementAt(6).Price</span>
+                                    </div>
+                                    <!-- add to cart btn -->
+                                    <div class="ecom bg-lblue">
+                                        <a class="btn" href="#">Add to cart</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3 col-sm-6">
+                                <!-- Restaurant Item -->
+                                <div class="item">
+                                    <!-- Item's image -->
+                                    <img class="img-responsive" src="@Model.Products.ElementAt(7).PathToImage" alt="">
+                                    <!-- Item details -->
+                                    <div class="item-dtls">
+                                        <!-- product title -->
+                                        <h4><a href="#">@Model.Products.ElementAt(7).Brand @Model.Products.ElementAt(7).Model </a></h4>
+                                        <!-- price -->
+                                        <span class="price lblue">₪@Model.Products.ElementAt(7).Price</span>
+                                    </div>
+                                    <!-- add to cart btn -->
+                                    <div class="ecom bg-lblue">
+                                        <a class="btn" href="#">Add to cart</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!--/.Second slide-->
+                    <!--Third slide-->
+                    <div class="carousel-item">
+
+                        <div class="row">
+                            <div class="col-md-3 col-sm-6">
+                                <!-- Restaurant Item -->
+                                <div class="item">
+                                    <!-- Item's image -->
+                                    <img class="img-responsive" src="@Model.Products.ElementAt(8).PathToImage" alt="">
+                                    <!-- Item details -->
+                                    <div class="item-dtls">
+                                        <!-- product title -->
+                                        <h4><a href="#">@Model.Products.ElementAt(8).Brand @Model.Products.ElementAt(8).Model </a></h4>
+                                        <!-- price -->
+                                        <span class="price lblue">₪@Model.Products.ElementAt(8).Price</span>
+                                    </div>
+                                    <!-- add to cart btn -->
+                                    <div class="ecom bg-lblue">
+                                        <a class="btn" href="#">Add to cart</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3 col-sm-6">
+                                <!-- Restaurant Item -->
+                                <div class="item">
+                                    <!-- Item's image -->
+                                    <img class="img-responsive" src="@Model.Products.ElementAt(9).PathToImage" alt="">
+                                    <!-- Item details -->
+                                    <div class="item-dtls">
+                                        <!-- product title -->
+                                        <h4><a href="#">@Model.Products.ElementAt(9).Brand @Model.Products.ElementAt(9).Model </a></h4>
+                                        <!-- price -->
+                                        <span class="price lblue">₪@Model.Products.ElementAt(9).Price</span>
+                                    </div>
+                                    <!-- add to cart btn -->
+                                    <div class="ecom bg-lblue">
+                                        <a class="btn" href="#">Add to cart</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3 col-sm-6">
+                                <!-- Restaurant Item -->
+                                <div class="item">
+                                    <!-- Item's image -->
+                                    <img class="img-responsive" src="@Model.Products.ElementAt(10).PathToImage" alt="">
+                                    <!-- Item details -->
+                                    <div class="item-dtls">
+                                        <!-- product title -->
+                                        <h4><a href="#">@Model.Products.ElementAt(10).Brand @Model.Products.ElementAt(10).Model </a></h4>
+                                        <!-- price -->
+                                        <span class="price lblue">₪@Model.Products.ElementAt(10).Price</span>
+                                    </div>
+                                    <!-- add to cart btn -->
+                                    <div class="ecom bg-lblue">
+                                        <a class="btn" href="#">Add to cart</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6">
+                                <!-- Restaurant Item -->
+                                <div class="item">
+                                    <!-- Item's image -->
+                                    <img class="img-responsive" src="@Model.Products.ElementAt(11).PathToImage" alt="">
+                                    <!-- Item details -->
+                                    <div class="item-dtls">
+                                        <!-- product title -->
+                                        <h4><a href="#">@Model.Products.ElementAt(11).Brand @Model.Products.ElementAt(11).Model </a></h4>
+                                        <!-- price -->
+                                        <span class="price lblue">₪@Model.Products.ElementAt(11).Price</span>
+                                    </div>
+                                    <!-- add to cart btn -->
+                                    <div class="ecom bg-lblue">
+                                        <a class="btn" href="#">Add to cart</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!--/.Third slide-->
+
+                    </div>
+                    <!--/.Slides-->
+
+                </div>
+                <!--/.Carousel Wrapper-->
+
+
+            </div>
+        </div>
+    </div>
 </div>

@@ -6,21 +6,28 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Electro_Shop.Models;
+using Electro_Shop.Data;
 
 namespace Electro_Shop.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly ProductContext _Pcontext;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, ProductContext Pcontext)
         {
             _logger = logger;
+            _Pcontext = Pcontext;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var TopProducts = _Pcontext.Product.OrderByDescending(x => x.SalesCounter).Take(12).ToList();
+
+            var BestSellers = new BestSeller{ Name = null, Products = TopProducts };
+         
+            return View(BestSellers);
         }
 
         public IActionResult Privacy()
