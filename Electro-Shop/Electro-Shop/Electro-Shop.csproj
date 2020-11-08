@@ -21,8 +21,4 @@
     <PackageReference Include="NHibernate" Version="5.3.4" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Migrations\Product\" />
-  </ItemGroup>
-
 </Project>
