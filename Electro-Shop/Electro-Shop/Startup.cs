@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -25,6 +26,23 @@ namespace Electro_Shop
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAuthentication()
+                .AddGoogle(options =>
+                {
+                    options.ClientId = Configuration["App:GoogleClientId"];
+                    options.ClientSecret = Configuration["App:GoogleClientSecret"];
+                })
+
+                .AddFacebook(option =>
+                {
+                    option.AppId = Configuration["App:FacebookClientId"];
+                    option.ClientSecret = Configuration["App:FacebookClientSecret"];
+                });
+
+
+                
+
+            services.AddRazorPages();
             services.AddControllersWithViews();
 
             services.AddDbContext<CategoryContext>(options =>
@@ -51,7 +69,7 @@ namespace Electro_Shop
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -59,6 +77,7 @@ namespace Electro_Shop
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
             });
         }
     }
