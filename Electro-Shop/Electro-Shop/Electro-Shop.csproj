@@ -25,6 +25,7 @@
     <Folder Include="Migrations\Product\" />
     <Folder Include="Views\BestSellers\" />
     <Folder Include="Views\ContactUs\" />
+    <Folder Include="Views\AboutUs\" />
   </ItemGroup>
 
 </Project>
