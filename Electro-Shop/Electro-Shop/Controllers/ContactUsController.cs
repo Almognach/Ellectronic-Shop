@@ -16,11 +16,14 @@ namespace Electro_Shop.Controllers
     {
         private readonly ILogger<ContactUsController> _logger;
         private readonly BranchContext _context;
+        private readonly ContactUsContext _Contactcontext;
 
-        public ContactUsController(ILogger<ContactUsController> logger, BranchContext context)
+
+        public ContactUsController(ILogger<ContactUsController> logger, BranchContext context,ContactUsContext Ccontext)
         {
             _logger = logger;
             _context = context;
+            _Contactcontext = Ccontext;
 
         }
 
@@ -29,6 +32,19 @@ namespace Electro_Shop.Controllers
             var branches = _context.branches.ToList();
             return View(branches);
         }
-     
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([FromForm] ContactUsSubmit submit)
+        {
+            if (ModelState.IsValid)
+            {
+                _Contactcontext.Add(submit);
+                await _Contactcontext.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(submit);
+        }
+
     }
 }

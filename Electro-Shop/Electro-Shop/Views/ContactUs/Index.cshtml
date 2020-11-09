@@ -70,12 +70,12 @@
                     <p style="color: #000">Contact us and our team will be back to you within 2 buisness days.</p>
                 </div>
             </div>
-            <form name="contactForm" id="contactForm" method="POST" action="" class="needs-validation" novalidate>
+            <form name="contactForm" id="contactForm" asp-controller="ContactUs" asp-action="Create" class="needs-validation" novalidate>
                 <div class="row">
                     <div class="col-md-12">
                         <div class="control-group">
                             <label>First Name</label>
-                            <input id="first_name" type="text" class="demo-default form-control js-form-input" placeholder="First Name" name="FirstName" required
+                            <input class="demo-default form-control js-form-input" placeholder="First Name" name="FirstName" required
                                 >
                             <div class="invalid-feedback">
                                 Please enter first name
@@ -83,31 +83,28 @@
                         </div>
                         <div class="control-group">
                             <label>Last Name</label>
-                            <input id="last_name" type="text" class="demo-default form-control js-form-input" placeholder="Last Name" name="LastName" required
-                                 >
+                            <input class="demo-default form-control js-form-input" placeholder="Last Name" name="LastName" required >
                             <div class="invalid-feedback">
                                 Please enter last name
                             </div>
                         </div>
                         <div class="control-group">
                             <label>Phone #</label>
-                            <input id="phone" type="text" class="demo-default form-control js-form-input" placeholder="Phone #" name="PhoneNum" required>
+                            <input class="demo-default form-control js-form-input" placeholder="Phone #" name="PhoneNumber" required >
                             <div class="invalid-feedback" >
                                 Please enter phone number
                             </div>
                         </div>
                         <div class="control-group">
                             <label>Email</label>
-                            <input id="email" type="email" class="demo-default form-control js-form-input" placeholder="yourname@domain.com" name="EmailAdress" required >
+                            <input type="email" class="demo-default form-control js-form-input" placeholder="yourname@domain.com" name="Email"  required >
                                   
                             <div class="invalid-feedback">
                                 Please enter email adress
                             </div>
                         </div>
                         <div class="control-group">
-                            <label for="select-beast">I have an issue with</label>
-                            <select class="form-control form-control-sm js-form-select" id="select-beast" placeholder="Select a service..." name="IssueType" required
-                                    >
+                            <select class="form-control form-control-sm js-form-select" label="I have an issue with" placeholder="Select a service..." name="IssueWith" required >
                                 <option value="">Select a service...</option>
                                 <option value="Website issues">Website issues</option>
                                 <option value="Catalog issues">Catalog issues</option>
