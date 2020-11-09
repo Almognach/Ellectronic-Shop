@@ -20,7 +20,7 @@
 <div class="shop-items">
     <div class="container-fluid">
         @*Best sellers carousel*@
-        <a class="nav-link text-dark" asp-area="" asp-controller="BestSellers" asp-action="Index"> Best Selling products</a>
+        <a class="nav-link text-dark" asp-controller="BestSellers" asp-action="Index"> Best Selling products</a>
         <div class="container my-4">
             <link rel="stylesheet" href="~/css/bestsellers.css" />
 
@@ -57,7 +57,7 @@
                                     <!-- Item details -->
                                     <div class="item-dtls">
                                         <!-- product title -->
-                                        <h4><a href="#">@Model.Products.ElementAt(0).Brand @Model.Products.ElementAt(0).Model </a></h4>
+                                        <h4><a asp-controller="Products" asp-action="Details" asp-route-id="@Model.Products.ElementAt(0).Id" >@Model.Products.ElementAt(0).Brand @Model.Products.ElementAt(0).Model </a></h4>
                                         <!-- price -->
                                         <span class="price lblue">₪@Model.Products.ElementAt(0).Price</span>
                                     </div>
@@ -77,7 +77,7 @@
                                     <!-- Item details -->
                                     <div class="item-dtls">
                                         <!-- product title -->
-                                        <h4><a href="#">@Model.Products.ElementAt(1).Brand @Model.Products.ElementAt(1).Model </a></h4>
+                                        <h4><a asp-controller="Products" asp-action="Details" asp-route-id="@Model.Products.ElementAt(1).Id">@Model.Products.ElementAt(1).Brand @Model.Products.ElementAt(1).Model </a></h4>
                                         <!-- price -->
                                         <span class="price lblue">₪@Model.Products.ElementAt(1).Price</span>
                                     </div>
@@ -97,7 +97,7 @@
                                     <!-- Item details -->
                                     <div class="item-dtls">
                                         <!-- product title -->
-                                        <h4><a href="#">@Model.Products.ElementAt(2).Brand @Model.Products.ElementAt(2).Model </a></h4>
+                                        <h4><a asp-controller="Products" asp-action="Details" asp-route-id="@Model.Products.ElementAt(2).Id">@Model.Products.ElementAt(2).Brand @Model.Products.ElementAt(2).Model </a></h4>
                                         <!-- price -->
                                         <span class="price lblue">₪@Model.Products.ElementAt(2).Price</span>
                                     </div>
@@ -116,7 +116,7 @@
                                     <!-- Item details -->
                                     <div class="item-dtls">
                                         <!-- product title -->
-                                        <h4><a href="#">@Model.Products.ElementAt(3).Brand @Model.Products.ElementAt(3).Model </a></h4>
+                                        <h4><a asp-controller="Products" asp-action="Details" asp-route-id="@Model.Products.ElementAt(3).Id">@Model.Products.ElementAt(3).Brand @Model.Products.ElementAt(3).Model </a></h4>
                                         <!-- price -->
                                         <span class="price lblue">₪@Model.Products.ElementAt(3).Price</span>
                                     </div>
@@ -142,7 +142,7 @@
                                     <!-- Item details -->
                                     <div class="item-dtls">
                                         <!-- product title -->
-                                        <h4><a href="#">@Model.Products.ElementAt(4).Brand @Model.Products.ElementAt(4).Model </a></h4>
+                                        <h4><a asp-controller="Products" asp-action="Details" asp-route-id="@Model.Products.ElementAt(4).Id">@Model.Products.ElementAt(4).Brand @Model.Products.ElementAt(4).Model </a></h4>
                                         <!-- price -->
                                         <span class="price lblue">₪@Model.Products.ElementAt(4).Price</span>
                                     </div>
@@ -162,7 +162,7 @@
                                     <!-- Item details -->
                                     <div class="item-dtls">
                                         <!-- product title -->
-                                        <h4><a href="#">@Model.Products.ElementAt(5).Brand @Model.Products.ElementAt(5).Model </a></h4>
+                                        <h4><a asp-controller="Products" asp-action="Details" asp-route-id="@Model.Products.ElementAt(5).Id">@Model.Products.ElementAt(5).Brand @Model.Products.ElementAt(5).Model </a></h4>
                                         <!-- price -->
                                         <span class="price lblue">₪@Model.Products.ElementAt(5).Price</span>
                                     </div>
@@ -181,7 +181,7 @@
                                     <!-- Item details -->
                                     <div class="item-dtls">
                                         <!-- product title -->
-                                        <h4><a href="#">@Model.Products.ElementAt(6).Brand @Model.Products.ElementAt(6).Model </a></h4>
+                                        <h4><a asp-controller="Products" asp-action="Details" asp-route-id="@Model.Products.ElementAt(6).Id">@Model.Products.ElementAt(6).Brand @Model.Products.ElementAt(6).Model </a></h4>
                                         <!-- price -->
                                         <span class="price lblue">₪@Model.Products.ElementAt(6).Price</span>
                                     </div>
@@ -200,7 +200,7 @@
                                     <!-- Item details -->
                                     <div class="item-dtls">
                                         <!-- product title -->
-                                        <h4><a href="#">@Model.Products.ElementAt(7).Brand @Model.Products.ElementAt(7).Model </a></h4>
+                                        <h4><a asp-controller="Products" asp-action="Details" asp-route-id="@Model.Products.ElementAt(7).Id">@Model.Products.ElementAt(7).Brand @Model.Products.ElementAt(7).Model </a></h4>
                                         <!-- price -->
                                         <span class="price lblue">₪@Model.Products.ElementAt(7).Price</span>
                                     </div>
@@ -226,7 +226,7 @@
                                     <!-- Item details -->
                                     <div class="item-dtls">
                                         <!-- product title -->
-                                        <h4><a href="#">@Model.Products.ElementAt(8).Brand @Model.Products.ElementAt(8).Model </a></h4>
+                                        <h4><a asp-controller="Products" asp-action="Details" asp-route-id="@Model.Products.ElementAt(8).Id">@Model.Products.ElementAt(8).Brand @Model.Products.ElementAt(8).Model </a></h4>
                                         <!-- price -->
                                         <span class="price lblue">₪@Model.Products.ElementAt(8).Price</span>
                                     </div>
@@ -245,7 +245,7 @@
                                     <!-- Item details -->
                                     <div class="item-dtls">
                                         <!-- product title -->
-                                        <h4><a href="#">@Model.Products.ElementAt(9).Brand @Model.Products.ElementAt(9).Model </a></h4>
+                                        <h4><a asp-controller="Products" asp-action="Details" asp-route-id="@Model.Products.ElementAt(9).Id">@Model.Products.ElementAt(9).Brand @Model.Products.ElementAt(9).Model </a></h4>
                                         <!-- price -->
                                         <span class="price lblue">₪@Model.Products.ElementAt(9).Price</span>
                                     </div>
@@ -264,7 +264,7 @@
                                     <!-- Item details -->
                                     <div class="item-dtls">
                                         <!-- product title -->
-                                        <h4><a href="#">@Model.Products.ElementAt(10).Brand @Model.Products.ElementAt(10).Model </a></h4>
+                                        <h4><a asp-controller="Products" asp-action="Details" asp-route-id="@Model.Products.ElementAt(10).Id">@Model.Products.ElementAt(10).Brand @Model.Products.ElementAt(10).Model </a></h4>
                                         <!-- price -->
                                         <span class="price lblue">₪@Model.Products.ElementAt(10).Price</span>
                                     </div>
@@ -282,7 +282,7 @@
                                     <!-- Item details -->
                                     <div class="item-dtls">
                                         <!-- product title -->
-                                        <h4><a href="#">@Model.Products.ElementAt(11).Brand @Model.Products.ElementAt(11).Model </a></h4>
+                                        <h4><a asp-controller="Products" asp-action="Details" asp-route-id="@Model.Products.ElementAt(11).Id">@Model.Products.ElementAt(11).Brand @Model.Products.ElementAt(11).Model </a></h4>
                                         <!-- price -->
                                         <span class="price lblue">₪@Model.Products.ElementAt(11).Price</span>
                                     </div>

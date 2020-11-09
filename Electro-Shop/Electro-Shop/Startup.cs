@@ -29,15 +29,15 @@ namespace Electro_Shop
             services.AddAuthentication()
                 .AddGoogle(options =>
                 {
-                    options.ClientId = Configuration["App:GoogleClientId"];
-                    options.ClientSecret = Configuration["App:GoogleClientSecret"];
-                })
-
-                .AddFacebook(option =>
-                {
-                    option.AppId = Configuration["App:FacebookClientId"];
-                    option.ClientSecret = Configuration["App:FacebookClientSecret"];
+                    options.ClientId = "739483181872-c1halhl6d1gl3424aseh9m0jfjedb3if.apps.googleusercontent.com";
+                    options.ClientSecret = "uP8CW3CH5c-xT0TMtZnsH2Z_";
                 });
+
+                //.AddFacebook(option =>
+                //{
+                //    option.AppId = Configuration["App:FacebookClientId"];
+                //    option.ClientSecret = Configuration["App:FacebookClientSecret"];
+                //});
 
 
                 

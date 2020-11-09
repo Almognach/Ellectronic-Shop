@@ -4,11 +4,17 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@section Scripts {}
+@section Scripts {
+
+<script>
+
+      new WOW().init();
+</script>
+}
 
 @foreach (var category in Model)
 {
-
+    
     <div class="shop-items">
         <link rel="stylesheet" href="~/css/bestsellers.css" />
         <div class="container-fluid">
@@ -25,7 +31,7 @@
                             <!-- Item details -->
                             <div class="item-dtls">
                                 <!-- product title -->
-                                <h4><a href="#">@product.Brand  @product.Model </a></h4>
+                                <h4><a asp-controller="Products" asp-action="Details" asp-route-id="@product.Id" >@product.Brand  @product.Model </a></h4>
                                 <!-- price -->
                                 <span class="price lblue">₪@product.Price</span>
                             </div>
