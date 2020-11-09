@@ -9,7 +9,7 @@ namespace Electro_Shop.Models
 {
     public class ContactUsSubmit
     {
-        
+        public int Id { get; set; }
         public String FirstName { get; set; }
         public String LastName { get; set; }
         public String Phone { get; set; }

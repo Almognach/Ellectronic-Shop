@@ -15,30 +15,20 @@ namespace Electro_Shop.Controllers
     public class ContactUsController : Controller
     {
         private readonly ILogger<ContactUsController> _logger;
-        private readonly ContactUsContext _context;
+        private readonly BranchContext _context;
 
-
-        public ContactUsController(ILogger<ContactUsController> logger)
+        public ContactUsController(ILogger<ContactUsController> logger, BranchContext context)
         {
             _logger = logger;
+            _context = context;
+
         }
 
         public IActionResult Index()
         {
-            return View();
+            var branches = _context.branches.ToList();
+            return View(branches);
         }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Index([Bind("FirstName,LastName,Phone,Email,IssueWith")] ContactUsSubmit contact)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(contact);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View();
-        }
+     
     }
 }

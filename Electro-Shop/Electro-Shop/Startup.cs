@@ -53,6 +53,8 @@ namespace Electro_Shop
 
             services.AddDbContext<SupplierContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("SupplierContext")));
+            services.AddDbContext<BranchContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("BranchesContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
