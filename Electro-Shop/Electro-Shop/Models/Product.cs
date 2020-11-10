@@ -4,6 +4,8 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
+
+
 namespace Electro_Shop.Models
 {
     public class Product
@@ -19,5 +21,10 @@ namespace Electro_Shop.Models
         public int InStock { get; set; }
         public Uri PathToImage { get; set; }
 
+        public ICollection<ProductCategory> Categories { get; set; }
+
+
     }
+
+
 }

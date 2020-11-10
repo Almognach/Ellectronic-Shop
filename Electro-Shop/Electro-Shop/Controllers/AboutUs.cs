@@ -10,28 +10,18 @@ using Electro_Shop.Data;
 
 namespace Electro_Shop.Controllers
 {
-    public class HomeController : Controller
+    public class AboutUsController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly ProductContext _Pcontext;
 
-        public HomeController(ILogger<HomeController> logger, ProductContext Pcontext)
+        public AboutUsController(ILogger<HomeController> logger)
         {
             _logger = logger;
-            _Pcontext = Pcontext;
         }
 
         public IActionResult Index()
         {
-            var TopProducts = _Pcontext.Product.OrderByDescending(x => x.SalesCounter).Take(12).ToList();
-
-            var BestSellers = new BestSeller{ Name = null, Products = TopProducts };
          
-            return View(BestSellers);
-        }
-
-        public IActionResult Privacy()
-        {
             return View();
         }
 

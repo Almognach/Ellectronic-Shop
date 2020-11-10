@@ -50,6 +50,9 @@ namespace Electro_Shop
 
             services.AddDbContext<ProductContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("ProductContext")));
+
+            services.AddDbContext<SupplierContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("SupplierContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -67,6 +70,8 @@ namespace Electro_Shop
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseSession();
+            app.UseMvc();
 
             app.UseRouting();
             app.UseAuthentication();

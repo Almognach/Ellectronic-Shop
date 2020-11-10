@@ -10,7 +10,11 @@
     },
     "mssql3": {
       "type": "mssql.local",
+<<<<<<< HEAD
+      "connectionId": "SupplierContext"
+=======
       "connectionId": "AuthDbContextConnection"
+>>>>>>> origin/Login&Register-Facebook&Google
     }
   }
 }
