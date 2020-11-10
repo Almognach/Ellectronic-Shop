@@ -1,6 +1,7 @@
 bin/
 obj/
 .vs/
+**/*.csproj.user
 # Prerequisites
 *.d
 
