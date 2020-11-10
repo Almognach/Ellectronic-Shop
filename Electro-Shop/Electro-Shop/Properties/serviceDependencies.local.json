@@ -14,7 +14,8 @@
     },
     "mssql4": {
       "type": "mssql.local",
-      "connectionId": "AuthDbContext"
+      "connectionId": "SupplierContext"
     }
+  }
   }
 }

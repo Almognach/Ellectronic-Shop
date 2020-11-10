@@ -10,6 +10,7 @@
     },
     "mssql3": {
       "type": "mssql",
+
       "connectionId": "AuthDbContextConnection"
     },
     "mssql4": {

@@ -29,6 +29,7 @@ namespace Electro_Shop
             services.AddAuthentication()
                 .AddGoogle(options =>
                 {
+
                     options.ClientId = Configuration["App:GoogleClientId"];
                     options.ClientSecret = Configuration["App:GoogleClientSecret"];
                 })
@@ -38,6 +39,18 @@ namespace Electro_Shop
                     option.AppId = Configuration["App:FacebookClientId"];
                     option.ClientSecret = Configuration["App:FacebookClientSecret"];
                 });
+
+
+                //    options.ClientId = "739483181872-c1halhl6d1gl3424aseh9m0jfjedb3if.apps.googleusercontent.com";
+                //    options.ClientSecret = "uP8CW3CH5c-xT0TMtZnsH2Z_";
+                //});
+
+                //.AddFacebook(option =>
+                //{
+                //    option.AppId = Configuration["App:FacebookClientId"];
+                //    option.ClientSecret = Configuration["App:FacebookClientSecret"];
+                //});
+
 
 
                 
@@ -50,6 +63,14 @@ namespace Electro_Shop
 
             services.AddDbContext<ProductContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("ProductContext")));
+
+            services.AddDbContext<SupplierContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("SupplierContext")));
+            services.AddDbContext<BranchContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("BranchesContext")));
+            services.AddDbContext<ContactUsContext>(options =>
+                  options.UseSqlServer(Configuration.GetConnectionString("ContactUsContext")));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

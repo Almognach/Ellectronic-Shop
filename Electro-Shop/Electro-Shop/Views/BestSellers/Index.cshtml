@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Electro_Shop.Models.BestSeller>
+@{
+    ViewData["Title"] = "Best sellers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Scripts {
+
+<script>
+
+      new WOW().init();
+</script>
+}
+
+@foreach (var category in Model)
+{
+    
+    <div class="shop-items">
+        <link rel="stylesheet" href="~/css/bestsellers.css" />
+        <div class="container-fluid">
+            <h2>  @category.Name.Name </h2>
+            <div class="row">
+
+                @foreach (var product in category.Products)
+                {
+                    <div class="col-md-3 col-sm-6">
+                        <!-- Restaurant Item -->
+                        <div class="item">
+                            <!-- Item's image -->
+                            <img class="img-responsive" src="@product.PathToImage" alt="">
+                            <!-- Item details -->
+                            <div class="item-dtls">
+                                <!-- product title -->
+                                <h4><a asp-controller="Products" asp-action="Details" asp-route-id="@product.Id" >@product.Brand  @product.Model </a></h4>
+                                <!-- price -->
+                                <span class="price lblue">₪@product.Price</span>
+                            </div>
+                            <!-- add to cart btn -->
+                            <div class="ecom bg-lblue">
+                                <a class="btn" href="#">Add to cart</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+}
+
+
+
