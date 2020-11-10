@@ -1,0 +1,21 @@
+{
+  "dependencies": {
+    "mssql3": {
+      "restored": true,
+<<<<<<< HEAD
+      "restoreTime": "2020-11-08T17:26:59.6052521Z"
+=======
+      "restoreTime": "2020-11-07T23:02:48.8121861Z"
+>>>>>>> origin/Login&Register-Facebook&Google
+    },
+    "mssql2": {
+      "restored": true,
+      "restoreTime": "2020-11-05T21:34:44.1306896Z"
+    },
+    "mssql1": {
+      "restored": true,
+      "restoreTime": "2020-11-05T21:15:40.5424861Z"
+    }
+  },
+  "parameters": {}
+}
