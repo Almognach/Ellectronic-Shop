@@ -18,6 +18,6 @@ namespace Electro_Shop.Models
         public int SalesCounter { get; set; }
         public int InStock { get; set; }
         public Uri PathToImage { get; set; }
-
+        public Supplier Supplier { get; set; }
     }
 }

@@ -6,10 +6,6 @@
     <UserSecretsId>8dede79d-5a8c-41ec-974b-5e25b80dc1e5</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Remove="Migrations\Product\20201106112815_Product.cs" />
-    <Compile Remove="Migrations\Product\20201106112815_Product.Designer.cs" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="3.1.9" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="3.1.9" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.9" />
@@ -25,11 +21,9 @@
 
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Migrations\Product\" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.9" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Migrations\Product\" />
     <Folder Include="Views\BestSellers\" />
     <Folder Include="Views\ContactUs\" />
     <Folder Include="Views\AboutUs\" />

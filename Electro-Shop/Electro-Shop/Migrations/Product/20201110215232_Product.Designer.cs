@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Electro_Shop.Migrations
 {
     [DbContext(typeof(ProductContext))]
-    [Migration("20201106121407_Product")]
+    [Migration("20201110215232_Product")]
     partial class Product
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -31,12 +31,7 @@ namespace Electro_Shop.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ParentId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("ParentId");
 
                     b.ToTable("Category");
                 });
@@ -72,18 +67,31 @@ namespace Electro_Shop.Migrations
                     b.Property<int>("SalesCounter")
                         .HasColumnType("int");
 
+                    b.Property<int?>("SupplierId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
 
+                    b.HasIndex("SupplierId");
+
                     b.ToTable("Product");
                 });
 
-            modelBuilder.Entity("Electro_Shop.Models.Category", b =>
+            modelBuilder.Entity("Electro_Shop.Models.Supplier", b =>
                 {
-                    b.HasOne("Electro_Shop.Models.Category", "Parent")
-                        .WithMany()
-                        .HasForeignKey("ParentId");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Supplier");
                 });
 
             modelBuilder.Entity("Electro_Shop.Models.Product", b =>
@@ -91,6 +99,10 @@ namespace Electro_Shop.Migrations
                     b.HasOne("Electro_Shop.Models.Category", "Category")
                         .WithMany()
                         .HasForeignKey("CategoryId");
+
+                    b.HasOne("Electro_Shop.Models.Supplier", "Supplier")
+                        .WithMany()
+                        .HasForeignKey("SupplierId");
                 });
 #pragma warning restore 612, 618
         }
