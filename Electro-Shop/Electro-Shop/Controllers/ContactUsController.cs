@@ -27,24 +27,51 @@ namespace Electro_Shop.Controllers
 
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var branches = _context.branches.ToList();
-            return View(branches);
+            var _Branches = new List<Branch>();
+            _Branches = await _context.branches.ToListAsync();
+            var _Submit = new ContactUsSubmit();
+            var _ContactUsPage = new ContactUs
+            {
+                Branches = _Branches,
+                Submit = _Submit
+            };
+            return View(_ContactUsPage);
+        }
+
+        public async Task<IActionResult> List()
+        {
+            return View(await _Contactcontext.ContactUsSubmit.ToListAsync());
+        }
+
+        public IActionResult Create()
+        {
+            return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([FromForm] ContactUsSubmit submit)
+        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,PhoneNumber,Email,IssueWith")] ContactUsSubmit submit)
         {
+
             if (ModelState.IsValid)
             {
+                 //var submits = _Contactcontext.ContactUsSubmit.ToList();
                 _Contactcontext.Add(submit);
+                //var submits2 = _Contactcontext.ContactUsSubmit.ToList();
                 await _Contactcontext.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(submit);
+            var _Branches = new List<Branch>();
+            _Branches = await _context.branches.ToListAsync();
+            var _Submit = new ContactUsSubmit();
+            var _ContactUsPage = new ContactUs
+            {
+                Branches = _Branches,
+                Submit = _Submit
+            };
+            return View("Index", _ContactUsPage);
         }
-
     }
 }

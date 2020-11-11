@@ -14,6 +14,6 @@ namespace Electro_Shop.Data
         {
         }
 
-        public DbSet<Electro_Shop.Models.ContactUsSubmit> submits { get; set; }
+        public DbSet<Electro_Shop.Models.ContactUsSubmit> ContactUsSubmit { get; set; }
     }
 }

@@ -56,7 +56,7 @@ namespace Electro_Shop
             services.AddDbContext<BranchContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("BranchesContext")));
             services.AddDbContext<ContactUsContext>(options =>
-                  options.UseSqlServer(Configuration.GetConnectionString("ContactUsContext")));
+                  options.UseSqlServer(Configuration.GetConnectionString("ContactUsSubmitContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

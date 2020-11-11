@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Electro_Shop.Models.Branch>
+﻿@model Electro_Shop.Models.ContactUs
 @{
     ViewData["Title"] = "Contact us";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -23,30 +23,21 @@
                         $('#exampleModal').modal();
                         var formdata = {};
 
-                        @*var inputs = $("form#contactForm .js-form-input");
-                        inputs.each(function () {
-                            var input = $(this);
-                            var name = input[0].name;
-                            var value = input[0].value;
-                            formdata[name] = value;
-                        });
-                        var selectinput = $("form#contactForm .js-form-select");
-                        var name = selectinput[0].name;
-                        var value = selectinput[0].value;
-                        formdata[name] = value;*@
-
                         form[0].reset();
                         form.removeClass('was-validated')
-                        return;
-                    }
-                    form.addClass('was-validated');
-                });
+    @*form.submit(function (event) { event.submit }*@
 
-            }, false);
-        })();</script>
+    <!--return;
+                }
+                form.submit()
+                form.addClass('was-validated');
+            });
 
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        }, false);
+    })();</script>
+
 }
+@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 
 
 @*HTML*@
@@ -59,52 +50,53 @@
     </div>
 </div>
 <div class="parallax texture" id="parallax-cta"></div>
-    contact-form
 <div class="container form">
     <link rel="stylesheet" href="~/css/site.css" />
     <div class="row">
         <div class="col-md-7">
             <div class="row">
-                <div class="form-group col-md-12">
-                    <h2>Contact Us!</h2>
-                    <p style="color: #000">Contact us and our team will be back to you within 2 buisness days.</p>
-                </div>
+                <aside>
+                    <div class="form-group col-md-12">
+                        <h2>Contact Us!</h2>
+                        <p style="color: #000">Contact us and our team will be back to you within 2 buisness days.</p>
+                    </div>
             </div>
-            <form name="contactForm" id="contactForm" asp-controller="ContactUs" asp-action="Create" class="needs-validation" novalidate>
+            <form id="contactForm" class="needs-validation" asp-controller="ContactUs" asp-action="Create">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="control-group">
                             <label>First Name</label>
-                            <input class="demo-default form-control js-form-input" placeholder="First Name" name="FirstName" required
-                                >
+                            <input class="demo-default form-control js-form-input" asp-validation-for="@Model.Submit.FirstName" placeholder="First Name" name="FirstName" required>
                             <div class="invalid-feedback">
                                 Please enter first name
                             </div>
                         </div>
                         <div class="control-group">
                             <label>Last Name</label>
-                            <input class="demo-default form-control js-form-input" placeholder="Last Name" name="LastName" required >
+                            <input class="demo-default form-control js-form-input" asp-validation-for="@Model.Submit.LastName" placeholder="Last Name" name="LastName" required>
                             <div class="invalid-feedback">
                                 Please enter last name
                             </div>
                         </div>
                         <div class="control-group">
                             <label>Phone #</label>
-                            <input class="demo-default form-control js-form-input" placeholder="Phone #" name="PhoneNumber" required >
-                            <div class="invalid-feedback" >
+                            <input class="demo-default form-control js-form-input" asp-validation-for="@Model.Submit.PhoneNumber" placeholder="Phone #" name="PhoneNumber" required>
+                            <div class="invalid-feedback">
                                 Please enter phone number
                             </div>
                         </div>
                         <div class="control-group">
                             <label>Email</label>
-                            <input type="email" class="demo-default form-control js-form-input" placeholder="yourname@domain.com" name="Email"  required >
-                                  
+                            <input type="email" class="demo-default form-control js-form-input" asp-validation-for="@Model.Submit.Email" placeholder="yourname@domain.com" name="Email" required>
+
                             <div class="invalid-feedback">
                                 Please enter email adress
                             </div>
                         </div>
+
                         <div class="control-group">
-                            <select class="form-control form-control-sm js-form-select" label="I have an issue with" placeholder="Select a service..." name="IssueWith" required >
+                            <label for="select-beast">I have an issue with</label>
+                            <select class="form-control form-control-sm js-form-select" asp-validation-for="@Model.Submit.IssueWith" label="I have an issue with" placeholder="Select a service..." name="IssueWith" required>
                                 <option value="">Select a service...</option>
                                 <option value="Website issues">Website issues</option>
                                 <option value="Catalog issues">Catalog issues</option>
@@ -126,49 +118,25 @@
                     </div>
                 </div>
             </form>
+            </aside>
         </div>
         <div class="col-md-5 contact-right-info">
 
             <div align="center" class="float-left">
-                @foreach (var item in Model)
+                @foreach (var item in Model.Branches)
                 {
                     <h2> @item.CityName Branch </h2>
                     <p style="color: #000000">
-                        @item.StreetName <br />
+                        @item.StreetName St <br />
                         @item.CityName<br />
                         <a href="https://www.google.com/maps/place/Mapu+St+12,+Tel+Aviv-Yafo/32.0805756,34.7672356,17z/data=!3m1!4b1!4m5!3m4!1s0x151d4c79445538e3:0x83b3d14d05aa620c!8m2!3d32.0805756!4d34.7694243" style="color: #d2282e;" target="_blank"> Directions</a>
                         <br />   <a href="tel:03937548"> @item.PhoneNumber</a>
                     </p>
                 }
-                @*<h2> Tel Aviv</h2>
-                <p style="color: #000000">
-                    12 Mapo St<br />
-                    Tel Aviv, Israel<br />
-                    <a href="https://www.google.com/maps/place/Mapu+St+12,+Tel+Aviv-Yafo/32.0805756,34.7672356,17z/data=!3m1!4b1!4m5!3m4!1s0x151d4c79445538e3:0x83b3d14d05aa620c!8m2!3d32.0805756!4d34.7694243" style="color: #d2282e;" target="_blank"> Directions</a>
-                    <br />   <a href="tel:03937548"> 03-937548</a>
-                </p>
-
-                <h2> Petah Tikwa</h2>
-                <p style="color: #000000">
-                    25 Sinai St<br />
-                    Petah Tikwa, Israel<br />
-                    <a href="https://www.google.com/maps/place/Sinai+St+25,+Petah+Tikva/32.0728648,34.8918329,17z/data=!3m1!4b1!4m5!3m4!1s0x151d35d9b677caa1:0xc2c293a2c49304cb!8m2!3d32.0728648!4d34.8940216" style="color: #d2282e;" target="_blank"> Directions</a>
-                    <br />    <a href="tel:039254782"> 03-9254782</a>
-                </p>
-
-                <h2> Natanya</h2>
-                <p style="color: #000000">
-                    44 Herzel St<br />
-                    Natanya, Israel<br />
-                    <a href="https://www.google.com/maps/place/Herzl+St+44,+Netanya/32.327632,34.8574651,17z/data=!3m1!4b1!4m5!3m4!1s0x151d6aaa55f7cce9:0x2dad9c8991901933!8m2!3d32.327632!4d34.8596538" style="color: #d2282e;" target="_blank"> Directions</a>
-                    <br />  <a href="tel:039347687"> 03-9347687</a>
-
-                </p>*@
-
                 <h2>EMAIL ADDRESS</h2>
                 <a href="mailto:info@electro-shop.com">info@electro-shop.com</a>
                 <h2>SUPPORT</h2>
-                <a href="tel:0524523388">052-4523388</a><br />
+                <a href="tel:039031414">03-9031414</a><br />
                 <a href="mailto:support@electro-shop.com">support@electro-shop.com</a>
             </div>
         </div>
