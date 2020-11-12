@@ -16,12 +16,13 @@ namespace Electro_Shop
 {
     public class Startup
     {
+
+        public IConfiguration Configuration { get; }
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
-
-        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -41,19 +42,19 @@ namespace Electro_Shop
                 });
 
 
-                //    options.ClientId = "739483181872-c1halhl6d1gl3424aseh9m0jfjedb3if.apps.googleusercontent.com";
-                //    options.ClientSecret = "uP8CW3CH5c-xT0TMtZnsH2Z_";
-                //});
+            //    options.ClientId = "739483181872-c1halhl6d1gl3424aseh9m0jfjedb3if.apps.googleusercontent.com";
+            //    options.ClientSecret = "uP8CW3CH5c-xT0TMtZnsH2Z_";
+            //});
 
-                //.AddFacebook(option =>
-                //{
-                //    option.AppId = Configuration["App:FacebookClientId"];
-                //    option.ClientSecret = Configuration["App:FacebookClientSecret"];
-                //});
+            //.AddFacebook(option =>
+            //{
+            //    option.AppId = Configuration["App:FacebookClientId"];
+            //    option.ClientSecret = Configuration["App:FacebookClientSecret"];
+            //});
 
 
-
-                
+            services.AddMvc();
+            
 
             services.AddRazorPages();
             services.AddControllersWithViews();
@@ -87,7 +88,9 @@ namespace Electro_Shop
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
+
             app.UseStaticFiles();
+
 
             app.UseRouting();
             app.UseAuthentication();
