@@ -10,17 +10,12 @@
     },
     "mssql3": {
       "type": "mssql",
-<<<<<<< HEAD
       //"connectionId": "SupplierContext",
       "connectionId": "AuthDbContextConnection",
-=======
-
-      "connectionId": "AuthDbContextConnection"
     },
     "mssql4": {
       "type": "mssql",
       "connectionId": "AuthDbContext"
->>>>>>> MergeBranch
     }
   }
 }

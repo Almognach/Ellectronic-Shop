@@ -10,19 +10,11 @@
     },
     "mssql3": {
       "type": "mssql.local",
-<<<<<<< HEAD
-      "connectionId": "SupplierContext"
-=======
       "connectionId": "AuthDbContextConnection"
-<<<<<<< HEAD
->>>>>>> origin/Login&Register-Facebook&Google
-=======
     },
     "mssql4": {
       "type": "mssql.local",
       "connectionId": "SupplierContext"
->>>>>>> MergeBranch
     }
   }
   }
-}

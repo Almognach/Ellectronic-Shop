@@ -27,7 +27,6 @@ namespace Electro_Shop.Controllers
 
         }
 
-<<<<<<< HEAD
         public async Task<IActionResult> Index()
         {
             var _Branches = new List<Branch>();
@@ -49,17 +48,10 @@ namespace Electro_Shop.Controllers
         public IActionResult Create()
         {
             return View();
-=======
-        public IActionResult Index()
-        {
-            var branches = _context.branches.ToList();
-            return View(branches);
->>>>>>> MergeBranch
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-<<<<<<< HEAD
         public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,PhoneNumber,Email,IssueWith")] ContactUsSubmit submit)
         {
 
@@ -81,18 +73,5 @@ namespace Electro_Shop.Controllers
             };
             return View("Index", _ContactUsPage);
         }
-=======
-        public async Task<IActionResult> Create([FromForm] ContactUsSubmit submit)
-        {
-            if (ModelState.IsValid)
-            {
-                _Contactcontext.Add(submit);
-                await _Contactcontext.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(submit);
-        }
-
->>>>>>> MergeBranch
     }
 }
