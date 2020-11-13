@@ -12,8 +12,5 @@ namespace Electro_Shop.Models
         [Key]
         public int Id { get; set; }
         public string Name { get; set; }
-        
-        public Category Parent { get; set; }
-
     }
 }

@@ -15,5 +15,7 @@ namespace Electro_Shop.Data
         }
 
         public DbSet<Electro_Shop.Models.Product> Product { get; set; }
+
+        public DbSet<Electro_Shop.Models.Category> Category { get; set; }
     }
 }

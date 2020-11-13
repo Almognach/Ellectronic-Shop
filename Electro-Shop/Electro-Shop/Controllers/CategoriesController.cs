@@ -12,9 +12,9 @@ namespace Electro_Shop.Controllers
 {
     public class CategoriesController : Controller
     {
-        private readonly CategoryContext _context;
+        private readonly ProductContext _context;
 
-        public CategoriesController(CategoryContext context)
+        public CategoriesController(ProductContext context)
         {
             _context = context;
         }

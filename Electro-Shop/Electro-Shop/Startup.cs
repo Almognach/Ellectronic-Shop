@@ -29,8 +29,20 @@ namespace Electro_Shop
             services.AddAuthentication()
                 .AddGoogle(options =>
                 {
+<<<<<<< HEAD
                     options.ClientId = "739483181872-c1halhl6d1gl3424aseh9m0jfjedb3if.apps.googleusercontent.com";
                     options.ClientSecret = "uP8CW3CH5c-xT0TMtZnsH2Z_";
+=======
+
+                    options.ClientId = Configuration["App:GoogleClientId"];
+                    options.ClientSecret = Configuration["App:GoogleClientSecret"];
+                })
+
+                .AddFacebook(option =>
+                {
+                    option.AppId = Configuration["App:FacebookClientId"];
+                    option.ClientSecret = Configuration["App:FacebookClientSecret"];
+>>>>>>> MergeBranch
                 });
 
                 //.AddFacebook(option =>
@@ -38,6 +50,18 @@ namespace Electro_Shop
                 //    option.AppId = Configuration["App:FacebookClientId"];
                 //    option.ClientSecret = Configuration["App:FacebookClientSecret"];
                 //});
+
+
+                //    options.ClientId = "739483181872-c1halhl6d1gl3424aseh9m0jfjedb3if.apps.googleusercontent.com";
+                //    options.ClientSecret = "uP8CW3CH5c-xT0TMtZnsH2Z_";
+                //});
+
+                //.AddFacebook(option =>
+                //{
+                //    option.AppId = Configuration["App:FacebookClientId"];
+                //    option.ClientSecret = Configuration["App:FacebookClientSecret"];
+                //});
+
 
 
                 
@@ -56,7 +80,12 @@ namespace Electro_Shop
             services.AddDbContext<BranchContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("BranchesContext")));
             services.AddDbContext<ContactUsContext>(options =>
+<<<<<<< HEAD
                   options.UseSqlServer(Configuration.GetConnectionString("ContactUsSubmitContext")));
+=======
+                  options.UseSqlServer(Configuration.GetConnectionString("ContactUsContext")));
+
+>>>>>>> MergeBranch
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

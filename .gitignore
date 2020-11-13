@@ -1,7 +1,11 @@
 bin/
 obj/
 .vs/
+<<<<<<< HEAD
 .user
+=======
+
+>>>>>>> MergeBranch
 # Prerequisites
 *.d
 

@@ -14,6 +14,10 @@ namespace Electro_Shop.Data
         {
         }
 
+<<<<<<< HEAD
         public DbSet<Electro_Shop.Models.ContactUsSubmit> ContactUsSubmit { get; set; }
+=======
+        public DbSet<Electro_Shop.Models.ContactUsSubmit> submits { get; set; }
+>>>>>>> MergeBranch
     }
 }
