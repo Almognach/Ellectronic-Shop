@@ -1,4 +1,14 @@
-﻿@model Electro_Shop.Models.BestSeller
+﻿@using Microsoft.AspNetCore.Identity
+@using Electro_Shop.Areas.Identity.Data
+@using Electro_Shop.Models;
+@using Electro_Shop.Data;
+@using Microsoft.EntityFrameworkCore;
+
+@model Electro_Shop.Models.BestSeller
+@inject UserManager<ApplicationUser> UserManager
+@inject SignInManager<ApplicationUser> SignInManager
+
+
 @{
 
     ViewData["Title"] = "Home Page";
@@ -40,6 +50,26 @@
                 });
             })
         })();</script>
+
+    @*<script>public void AddItem(string ProductID, int UserID, int Quantity)
+        {
+            var ShoppingCartLine = new @Cart ShoppingCart
+            {
+                ProductID = Productid,
+                    UserID = Userid,
+                    Quantity = quantity
+            };
+
+            if (ModelState.IsValid) {
+                _ShoppingCartContext.Add(ShoppingCartLine);
+                await _ShoppingCartContext.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return RedirectToAction(nameof(Index));
+
+        }</script>*@
+
+
 }
 
 

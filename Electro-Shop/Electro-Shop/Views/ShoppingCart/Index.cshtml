@@ -1,0 +1,144 @@
+﻿@model Electro_Shop.Models.ShoppingCartView
+@{
+    ViewData["Title"] = "Shopping cart:";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Scripts {
+
+    <script>new WOW().init();</script>
+}
+
+
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container">
+    <link rel="stylesheet" href="~/css/ShoppingCart.css" />
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="ibox">
+                    <div class="ibox-title">
+                        <span class="pull-right">(<strong>@Model.Product_Quantity.Count</strong>) items</span>
+                        <h5>@Model.Product_Quantity.Count Items in your cart</h5>
+                    </div>
+
+                    @foreach (var item in Model.Product_Quantity)
+                    {
+                        <div class="ibox-content">
+                            <div class="table-responsive">
+                                <table class="table shoping-cart-table">
+                                    <tbody>
+
+                                        <tr>
+                                            <td width="150">
+                                                <div class="cart-product-imitation">
+                                                  <img src="@item.Product.PathToImage" class="img-fluid" alt="">
+                                                </div>
+                                            </td>
+                                            <td class="desc">
+                                                <h3>
+                                                    <a asp-controller="Products" asp-action="Details" asp-route-id="@item.Product.Id" class="text-navy">
+                                                        @item.Product.Brand @item.Product.Model
+                                                    </a>
+                                                </h3>
+                                                <p class="small">
+                                                    @item.Product.Description
+                                                </p>
+
+                                                <div class="m-t-sm">
+                                                    <a asp-action="Delete" asp-route-id="@item.Product.Id" class="text-muted"><i class="fa fa-trash" ></i> Remove item</a>
+                                                </div>
+                                            </td>
+
+                                            <td>
+                                                ₪@item.Product.Price
+                                                <s class="small text-muted">₪@Convert.ToInt32(item.Product.Price * 1.15)</s>
+                                            </td>
+                                            <td width="65">
+                                                @item.Quantity
+                                            </td>
+                                            <td>
+                                                <h4>
+                                                    ₪@(@item.Product.Price * @item.Quantity)
+                                                </h4>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    }
+
+                    <div class="ibox-content">
+                        <button class="btn btn-primary pull-right"><i class="fa fa fa-shopping-cart"></i> Checkout</button>
+                        <button class="btn btn-white" asp-area="" asp-controller="Home" asp-action="Index" ><i class="fa fa-arrow-left"></i> Continue shopping</button>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-3">
+                <div class="ibox">
+                    <div class="ibox-title">
+                        <h5>Cart Summary</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <span>
+                            Total
+                        </span>
+                        <h2 class="font-bold">
+                            ₪@Model.FinalPrice
+                        </h2>
+
+                        <hr>
+                        <span class="text-muted small">
+                            *For United States, France and Germany applicable sales tax will be applied
+                        </span>
+                        <div class="m-t-sm">
+                            <div class="btn-group">
+                                <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-shopping-cart"></i> Checkout</a>
+                                <a href="#" class="btn btn-white btn-sm"> Cancel</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ibox">
+                    <div class="ibox-content">
+
+                        <p class="font-bold">
+                            Other products you may be interested
+                        </p>
+                        <hr>
+                        <div>
+                            <a href="#" class="product-name"> Product 1</a>
+                            <div class="small m-t-xs">
+                                Many desktop publishing packages and web page editors now.
+                            </div>
+                            <div class="m-t text-righ">
+
+                                <a href="#" class="btn btn-xs btn-outline btn-primary">Info <i class="fa fa-long-arrow-right"></i> </a>
+                            </div>
+                        </div>
+                        <hr>
+                        <div>
+                            <a href="#" class="product-name"> Product 2</a>
+                            <div class="small m-t-xs">
+                                Many desktop publishing packages and web page editors now.
+                            </div>
+                            <div class="m-t text-righ">
+
+                                <a href="#" class="btn btn-xs btn-outline btn-primary">Info <i class="fa fa-long-arrow-right"></i> </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
