@@ -24,5 +24,7 @@ namespace Electro_Shop.Models
         public List<Product_Quantity> Product_Quantity { get; set; }
         [Required]
         public double FinalPrice { get; set; }
+        [Required]
+        public List<Product> Reccomended { get; set; }
     }
 }

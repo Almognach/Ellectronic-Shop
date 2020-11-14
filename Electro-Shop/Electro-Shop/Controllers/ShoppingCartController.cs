@@ -75,8 +75,8 @@ namespace Electro_Shop.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("CartId ,UserID, , ProductID, Quantity")] ShoppingCart NewLine)
         {
-
-            if (ModelState.IsValid)
+            
+            if (ModelState.IsValid && NewLine.Quantity > 0)
             {
                 for (int i = 0; i < NewLine.Quantity; i++)
                 {
@@ -118,12 +118,19 @@ namespace Electro_Shop.Controllers
 
         public async Task<IActionResult> CheckOut()
         {
+
             var ShoppingCartView = new ShoppingCartView();
             ShoppingCartView.Product_Quantity = new List<Product_Quantity>();
 
             var userID = ShoppingCartView.UserId = _UserManager.GetUserId(User);
 
             var Product_IDs = _ShoppingCartContext.ShoppingCartLines.Where(x => x.UserID == userID).ToList();
+
+            if (Product_IDs.Count < 1)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
 
             var list_id = new List<int>();
 
