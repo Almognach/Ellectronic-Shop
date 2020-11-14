@@ -60,6 +60,34 @@ namespace Electro_Shop.Controllers
             return View(pastOrders);
         }
 
+        public async Task<IActionResult> Reorder(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var order_id = await _OrderContext.Orders.FirstOrDefaultAsync(m => m.OrderID == id);
+            if (order_id == null)
+            {
+                return NotFound();
+            }
+
+            var allMyOrderLines = _OrderContext.OrderLines.Where(x => x.OrderID == order_id.OrderID).ToList();
+
+            foreach (var line in allMyOrderLines)
+            {
+                var ShoppingCartLine = new ShoppingCart
+                {
+                    ProductID = line.ProductID,
+                    Quantity = line.Quantity,
+                    UserID = line.UserID
+                };
+                await Create(ShoppingCartLine);
+                }
+            return RedirectToAction("Index", "ShoppingCart");
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("CartId ,UserID, , ProductID, Quantity")] ShoppingCart NewLine)
