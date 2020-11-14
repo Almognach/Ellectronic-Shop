@@ -21,6 +21,7 @@ namespace Electro_Shop.Controllers
         }
 
         // GET: Products
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Product.ToListAsync()); // Add sending whether the connected user is admin or not

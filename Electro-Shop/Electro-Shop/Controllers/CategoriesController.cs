@@ -21,12 +21,14 @@ namespace Electro_Shop.Controllers
         }
 
         // GET: Categories
+        //[Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Category.ToListAsync());
         }
 
         // GET: Categories/Details/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
