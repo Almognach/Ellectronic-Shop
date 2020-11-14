@@ -6,16 +6,19 @@
     <UserSecretsId>8dede79d-5a8c-41ec-974b-5e25b80dc1e5</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNet.Identity.Core" Version="2.2.3" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="3.1.9" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="3.1.9" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.9" />
+    <PackageReference Include="Microsoft.Azure.DocumentDB.Core" Version="2.12.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="5.0.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
     <PackageReference Include="NHibernate" Version="5.3.4" />
 
@@ -26,8 +29,6 @@
   <ItemGroup>
     <Folder Include="Areas\AdminCenter\Data\" />
     <Folder Include="Areas\AdminCenter\Models\" />
-    <Folder Include="Areas\AdminCenter\Views\Categories\" />
-    <Folder Include="Areas\AdminCenter\Views\Products\" />
     <Folder Include="Views\BestSellers\" />
     <Folder Include="Views\ContactUs\" />
     <Folder Include="Views\AboutUs\" />
