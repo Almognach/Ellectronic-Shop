@@ -21,30 +21,35 @@ namespace Electro_Shop.Controllers
         }
 
         // GET: Categories
-        //[Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Category.ToListAsync());
+            if (User.Identity.Name == "Admin")
+            {
+                return View("/Areas/AdminCenter/Views/Categories/AdminIndex.cshtml", await _context.Category.ToListAsync());
+            } else
+            {
+                return View(await _context.Category.ToListAsync());
+            }
         }
 
-        // GET: Categories/Details/5
-        [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+        //// GET: Categories/Details/5
+        //[Authorize(Roles = "Admin")]
+        //public async Task<IActionResult> Details(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            var category = await _context.Category
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (category == null)
-            {
-                return NotFound();
-            }
+        //    var category = await _context.Category
+        //        .FirstOrDefaultAsync(m => m.Id == id);
+        //    if (category == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return View(category);
-        }
+        //    return View(category);
+        //}
 
         // GET: Categories/Create
         [Authorize(Roles = "Admin")]
@@ -157,6 +162,12 @@ namespace Electro_Shop.Controllers
         private bool CategoryExists(int id)
         {
             return _context.Category.Any(e => e.Id == id);
+        }
+
+        public async Task<IActionResult> ListProducts(int categoryId)
+        {
+
+            return RedirectToAction("Index", "Products", categoryId);
         }
     }
 }

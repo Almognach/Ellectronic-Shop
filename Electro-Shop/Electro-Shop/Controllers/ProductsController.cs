@@ -21,10 +21,17 @@ namespace Electro_Shop.Controllers
         }
 
         // GET: Products
-        [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int ? categoryId = null)
         {
-            return View(await _context.Product.ToListAsync()); // Add sending whether the connected user is admin or not
+            // TODO: User category ID to filter the products that will be listed
+            if (User.Identity.Name == "Admin")
+            {
+                return View("/Areas/AdminCenter/Views/Categories/AdminIndex", await _context.Product.ToListAsync());
+
+            } else
+            {
+                return View(await _context.Product.ToListAsync());
+            }
         }
 
         // GET: Products/Details/5
