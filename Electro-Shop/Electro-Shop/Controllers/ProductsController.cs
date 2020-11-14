@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Electro_Shop.Data;
 using Electro_Shop.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Electro_Shop.Controllers
 {
@@ -22,7 +23,7 @@ namespace Electro_Shop.Controllers
         // GET: Products
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Product.ToListAsync());
+            return View(await _context.Product.ToListAsync()); // Add sending whether the connected user is admin or not
         }
 
         // GET: Products/Details/5
@@ -43,6 +44,7 @@ namespace Electro_Shop.Controllers
             return View(product);
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: Products/Create
         public IActionResult Create()
         {
@@ -52,6 +54,7 @@ namespace Electro_Shop.Controllers
         // POST: Products/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Brand,Model,Price,Description,SalesCounter,InStock,PathToImage")] Product product)
@@ -66,6 +69,7 @@ namespace Electro_Shop.Controllers
         }
 
         // GET: Products/Edit/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -84,6 +88,7 @@ namespace Electro_Shop.Controllers
         // POST: Products/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Brand,Model,Price,Description,SalesCounter,InStock,PathToImage")] Product product)
@@ -117,6 +122,7 @@ namespace Electro_Shop.Controllers
         }
 
         // GET: Products/Delete/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -135,6 +141,7 @@ namespace Electro_Shop.Controllers
         }
 
         // POST: Products/Delete/5
+        [Authorize(Roles = "Admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
