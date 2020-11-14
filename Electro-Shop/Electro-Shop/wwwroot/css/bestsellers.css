@@ -295,7 +295,21 @@ s
             transition: all 0.35s ease-in;
         }
 
+        .shop-items .item .ecom button.btn {
+            border: 1px solid #fff;
+            color: #fff;
+            background: transparent;
+            -webkit-transition: all 0.35s ease-in;
+            -moz-transition: all 0.35s ease-in;
+            -ms-transition: all 0.35s ease-in;
+            -o-transition: all 0.35s ease-in;
+            transition: all 0.35s ease-in;
+        }
+        .shop-items .item .ecom button.btn:hover {
+            background: #fff;
+            color: #777;
+        }
             .shop-items .item .ecom a.btn:hover {
                 background: #fff;
                 color: #777;
-            }
+      }

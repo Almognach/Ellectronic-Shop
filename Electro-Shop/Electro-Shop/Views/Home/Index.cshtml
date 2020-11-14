@@ -124,7 +124,12 @@
                                     </div>
                                     <!-- add to cart btn -->
                                     <div class="ecom bg-lblue">
-                                        <a class="btn" href="#">Add to cart</a>
+                                        <form asp-action="Create" asp-controller="ShoppingCart">
+                                            <input name="UserID" id="UserID" value="@UserManager.GetUserId(User)" hidden />
+                                            <input name="ProductID" id="ProductID" value="@Model.Products.ElementAt(0).Id" hidden />
+                                            <input name="Quantity" id="Quantity" type="number" value="1" hidden>
+                                            <button class="btn" type="submit" >Add to cart</button>
+                                        </form>      
                                     </div>
                                 </div>
                             </div>
@@ -144,7 +149,12 @@
                                     </div>
                                     <!-- add to cart btn -->
                                     <div class="ecom bg-lblue">
-                                        <a class="btn" href="#">Add to cart</a>
+                                        <form asp-action="Create" asp-controller="ShoppingCart">
+                                            <input name="UserID" id="UserID" value="@UserManager.GetUserId(User)" hidden />
+                                            <input name="ProductID" id="ProductID" value="@Model.Products.ElementAt(1).Id" hidden />
+                                            <input name="Quantity" id="Quantity" type="number" value="1" hidden>
+                                            <button class="btn" type="submit">Add to cart</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -164,7 +174,12 @@
                                     </div>
                                     <!-- add to cart btn -->
                                     <div class="ecom bg-lblue">
-                                        <a class="btn" href="#">Add to cart</a>
+                                        <form asp-action="Create" asp-controller="ShoppingCart">
+                                            <input name="UserID" id="UserID" value="@UserManager.GetUserId(User)" hidden />
+                                            <input name="ProductID" id="ProductID" value="@Model.Products.ElementAt(2).Id" hidden />
+                                            <input name="Quantity" id="Quantity" type="number" value="1" hidden>
+                                            <button class="btn" type="submit">Add to cart</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -183,7 +198,12 @@
                                     </div>
                                     <!-- add to cart btn -->
                                     <div class="ecom bg-lblue">
-                                        <a class="btn" href="#">Add to cart</a>
+                                        <form asp-action="Create" asp-controller="ShoppingCart">
+                                            <input name="UserID" id="UserID" value="@UserManager.GetUserId(User)" hidden />
+                                            <input name="ProductID" id="ProductID" value="@Model.Products.ElementAt(3).Id" hidden />
+                                            <input name="Quantity" id="Quantity" type="number" value="1" hidden>
+                                            <button class="btn" type="submit">Add to cart</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -209,7 +229,12 @@
                                     </div>
                                     <!-- add to cart btn -->
                                     <div class="ecom bg-lblue">
-                                        <a class="btn" href="#">Add to cart</a>
+                                        <form asp-action="Create" asp-controller="ShoppingCart">
+                                            <input name="UserID" id="UserID" value="@UserManager.GetUserId(User)" hidden />
+                                            <input name="ProductID" id="ProductID" value="@Model.Products.ElementAt(4).Id" hidden />
+                                            <input name="Quantity" id="Quantity" type="number" value="1" hidden>
+                                            <button class="btn" type="submit">Add to cart</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -229,7 +254,12 @@
                                     </div>
                                     <!-- add to cart btn -->
                                     <div class="ecom bg-lblue">
-                                        <a class="btn" href="#">Add to cart</a>
+                                        <form asp-action="Create" asp-controller="ShoppingCart">
+                                            <input name="UserID" id="UserID" value="@UserManager.GetUserId(User)" hidden />
+                                            <input name="ProductID" id="ProductID" value="@Model.Products.ElementAt(5).Id" hidden />
+                                            <input name="Quantity" id="Quantity" type="number" value="1" hidden>
+                                            <button class="btn" type="submit">Add to cart</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -248,7 +278,12 @@
                                     </div>
                                     <!-- add to cart btn -->
                                     <div class="ecom bg-lblue">
-                                        <a class="btn" href="#">Add to cart</a>
+                                        <form asp-action="Create" asp-controller="ShoppingCart">
+                                            <input name="UserID" id="UserID" value="@UserManager.GetUserId(User)" hidden />
+                                            <input name="ProductID" id="ProductID" value="@Model.Products.ElementAt(6).Id" hidden />
+                                            <input name="Quantity" id="Quantity" type="number" value="1" hidden>
+                                            <button class="btn" type="submit">Add to cart</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -267,7 +302,12 @@
                                     </div>
                                     <!-- add to cart btn -->
                                     <div class="ecom bg-lblue">
-                                        <a class="btn" href="#">Add to cart</a>
+                                        <form asp-action="Create" asp-controller="ShoppingCart">
+                                            <input name="UserID" id="UserID" value="@UserManager.GetUserId(User)" hidden />
+                                            <input name="ProductID" id="ProductID" value="@Model.Products.ElementAt(7).Id" hidden />
+                                            <input name="Quantity" id="Quantity" type="number" value="1" hidden>
+                                            <button class="btn" type="submit">Add to cart</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -293,7 +333,12 @@
                                     </div>
                                     <!-- add to cart btn -->
                                     <div class="ecom bg-lblue">
-                                        <a class="btn" href="#">Add to cart</a>
+                                        <form asp-action="Create" asp-controller="ShoppingCart">
+                                            <input name="UserID" id="UserID" value="@UserManager.GetUserId(User)" hidden />
+                                            <input name="ProductID" id="ProductID" value="@Model.Products.ElementAt(8).Id" hidden />
+                                            <input name="Quantity" id="Quantity" type="number" value="1" hidden>
+                                            <button class="btn" type="submit">Add to cart</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -312,7 +357,12 @@
                                     </div>
                                     <!-- add to cart btn -->
                                     <div class="ecom bg-lblue">
-                                        <a class="btn" href="#">Add to cart</a>
+                                        <form asp-action="Create" asp-controller="ShoppingCart">
+                                            <input name="UserID" id="UserID" value="@UserManager.GetUserId(User)" hidden />
+                                            <input name="ProductID" id="ProductID" value="@Model.Products.ElementAt(9).Id" hidden />
+                                            <input name="Quantity" id="Quantity" type="number" value="1" hidden>
+                                            <button class="btn" type="submit">Add to cart</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -331,7 +381,12 @@
                                     </div>
                                     <!-- add to cart btn -->
                                     <div class="ecom bg-lblue">
-                                        <a class="btn" href="#">Add to cart</a>
+                                        <form asp-action="Create" asp-controller="ShoppingCart">
+                                            <input name="UserID" id="UserID" value="@UserManager.GetUserId(User)" hidden />
+                                            <input name="ProductID" id="ProductID" value="@Model.Products.ElementAt(10).Id" hidden />
+                                            <input name="Quantity" id="Quantity" type="number" value="1" hidden>
+                                            <button class="btn" type="submit">Add to cart</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -349,7 +404,12 @@
                                     </div>
                                     <!-- add to cart btn -->
                                     <div class="ecom bg-lblue">
-                                        <a class="btn" href="#">Add to cart</a>
+                                        <form asp-action="Create" asp-controller="ShoppingCart">
+                                            <input name="UserID" id="UserID" value="@UserManager.GetUserId(User)" hidden />
+                                            <input name="ProductID" id="ProductID" value="@Model.Products.ElementAt(11).Id" hidden />
+                                            <input name="Quantity" id="Quantity" type="number" value="1" hidden>
+                                            <button class="btn" type="submit">Add to cart</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
