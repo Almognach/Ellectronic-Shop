@@ -71,6 +71,8 @@ namespace Electro_Shop
                   options.UseSqlServer(Configuration.GetConnectionString("ContactUsSubmitContext")));
             services.AddDbContext<ShoppingCartContext>(options =>
              options.UseSqlServer(Configuration.GetConnectionString("ShoppingCartContext")));
+            services.AddDbContext<OrdersContext>(options =>
+          options.UseSqlServer(Configuration.GetConnectionString("OrdersContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
