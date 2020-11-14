@@ -27,19 +27,19 @@ namespace Electro_Shop
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddAuthentication()
-                .AddGoogle(options =>
-                {
+            //services.AddAuthentication()
+            //    .AddGoogle(options =>
+            //    {
 
-                    options.ClientId = Configuration["App:GoogleClientId"];
-                    options.ClientSecret = Configuration["App:GoogleClientSecret"];
-                })
+            //        options.ClientId = Configuration["App:GoogleClientId"];
+            //        options.ClientSecret = Configuration["App:GoogleClientSecret"];
+            //    })
 
-                .AddFacebook(option =>
-                {
-                    option.AppId = Configuration["App:FacebookClientId"];
-                    option.ClientSecret = Configuration["App:FacebookClientSecret"];
-                });
+            //    .AddFacebook(option =>
+            //    {
+            //        option.AppId = Configuration["App:FacebookClientId"];
+            //        option.ClientSecret = Configuration["App:FacebookClientSecret"];
+            //    });
 
 
             //    options.ClientId = "739483181872-c1halhl6d1gl3424aseh9m0jfjedb3if.apps.googleusercontent.com";
@@ -71,7 +71,6 @@ namespace Electro_Shop
                     options.UseSqlServer(Configuration.GetConnectionString("BranchesContext")));
             services.AddDbContext<ContactUsContext>(options =>
                   options.UseSqlServer(Configuration.GetConnectionString("ContactUsContext")));
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
