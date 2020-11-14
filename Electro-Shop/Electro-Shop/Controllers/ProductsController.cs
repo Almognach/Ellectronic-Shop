@@ -13,11 +13,15 @@ namespace Electro_Shop.Controllers
 {
     public class ProductsController : Controller
     {
-        private readonly ProductContext _context;
+        private readonly ProductContext _Productcontext;
+        private readonly CategoryContext _Categorycontext;
+        private readonly ShoppingCartContext _ShoppingCartcontext;
 
-        public ProductsController(ProductContext context)
+        public ProductsController(ProductContext Productcontext, CategoryContext categorycontext, ShoppingCartContext shoppingcartcontext)
         {
-            _context = context;
+            _Productcontext = Productcontext;
+            _Categorycontext = categorycontext;
+            _ShoppingCartcontext = shoppingcartcontext;
         }
 
         // GET: Products
@@ -41,15 +45,58 @@ namespace Electro_Shop.Controllers
             {
                 return NotFound();
             }
-
-            var product = await _context.Product
+            var product = await _Productcontext.Product
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (product == null)
             {
                 return NotFound();
             }
 
-            return View(product);
+            var category = await _Categorycontext.Category
+                .FirstOrDefaultAsync(m => m.Id == product.CategoryId);
+            if (category == null)
+            {
+                return NotFound();
+            }
+
+            var productCategory = (from p in _Productcontext.Product
+                          join c in _Productcontext.Category on p.CategoryId equals category.Id
+                          select new
+                          {
+                           p.Id,
+                           p.Brand,
+                           p.Model,
+                           p.Description,
+                           p.PathToImage,
+                           p.Price,
+                           p.Supplier,
+                           p.InStock,
+                           p.SalesCounter,
+                           c.Name
+                          }).ToList();
+
+            var productcategoryjoined = new ProdudctCategoryJoined
+            {
+                Id = productCategory[0].Id,
+                Brand = productCategory[0].Brand,
+                Model = productCategory[0].Model,
+                Description = productCategory[0].Description,
+                PathToImage = productCategory[0].PathToImage,
+                Price = productCategory[0].Price,
+                Supplier = productCategory[0].Supplier,
+                InStock = productCategory[0].InStock,
+                SalesCounter = productCategory[0].SalesCounter,
+                CategoryName = productCategory[0].Name
+            };
+
+            var productDetails = new ProductDetails
+                {
+                category = category,
+                productcategory = productcategoryjoined,
+                shoppingCart = new ShoppingCart()
+            };
+
+            return View(productDetails);
         }
 
         [Authorize(Roles = "Admin")]
@@ -69,8 +116,8 @@ namespace Electro_Shop.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(product);
-                await _context.SaveChangesAsync();
+                _Productcontext.Add(product);
+                await _Productcontext.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(product);
@@ -85,7 +132,7 @@ namespace Electro_Shop.Controllers
                 return NotFound();
             }
 
-            var product = await _context.Product.FindAsync(id);
+            var product = await _Productcontext.Product.FindAsync(id);
             if (product == null)
             {
                 return NotFound();
@@ -110,8 +157,8 @@ namespace Electro_Shop.Controllers
             {
                 try
                 {
-                    _context.Update(product);
-                    await _context.SaveChangesAsync();
+                    _Productcontext.Update(product);
+                    await _Productcontext.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -138,7 +185,7 @@ namespace Electro_Shop.Controllers
                 return NotFound();
             }
 
-            var product = await _context.Product
+            var product = await _Productcontext.Product
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (product == null)
             {
@@ -154,15 +201,15 @@ namespace Electro_Shop.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var product = await _context.Product.FindAsync(id);
-            _context.Product.Remove(product);
-            await _context.SaveChangesAsync();
+            var product = await _Productcontext.Product.FindAsync(id);
+            _Productcontext.Product.Remove(product);
+            await _Productcontext.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool ProductExists(int id)
         {
-            return _context.Product.Any(e => e.Id == id);
+            return _Productcontext.Product.Any(e => e.Id == id);
         }
     }
 }

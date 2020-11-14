@@ -10,8 +10,8 @@
     },
     "mssql3": {
       "type": "mssql",
-
-      "connectionId": "AuthDbContextConnection"
+      //"connectionId": "SupplierContext",
+      "connectionId": "AuthDbContextConnection",
     },
     "mssql4": {
       "type": "mssql",

@@ -29,18 +29,22 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                         @if (@User.IsInRole("Admin"))
-                            { <li class="nav-item">
+                        {
+							<li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="Index">Products</a>
                             </li>
                         }
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Categories" asp-action="Index">Categories</a>
-                        </li>
+						</li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="BestSellers" asp-action="Index">Best Sellers</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="ContactUs" asp-action="Index">Contact</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Orders" asp-action="PastOrders">Past Orders</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="ContactUs" asp-action="Index">Contact Us</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="AboutUs" asp-action="Index">About Us</a>

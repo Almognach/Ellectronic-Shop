@@ -7,13 +7,13 @@ using Electro_Shop.Models;
 
 namespace Electro_Shop.Data
 {
-    public class ContactUsContext : DbContext
+    public class ShoppingCartContext : DbContext
     {
-        public ContactUsContext(DbContextOptions<ContactUsContext> options)
+        public ShoppingCartContext(DbContextOptions<ShoppingCartContext> options)
             : base(options)
         {
         }
 
-        public DbSet<Electro_Shop.Models.ContactUsSubmit> ContactUsSubmit { get; set; }
+        public DbSet<Electro_Shop.Models.ShoppingCart> ShoppingCartLines { get; set; }
     }
 }
