@@ -27,9 +27,9 @@
                 $.get("https://api.nytimes.com/svc/topstories/v2/technology.json?api-key=FKt9wkCL0mnzCINpT5QZQrcZZ6qHUSIi", function (data) {
                     $(".result").html(data);
                     var Row = $("#FatherRow");
-
+                    var count = 0;
                     data.results.forEach(item => {
-
+                        count++;
                         var generate = $([
                             "       <div class='col-sm-4'>",
                             "            <div class='widget single-news'>",
@@ -44,8 +44,9 @@
                             "                </div>",
                             "            </div> "
                         ].join("\n"));
-
+                        if (count < 7) { 
                         Row.append(generate);
+                    }
                     });
                 });
             })
