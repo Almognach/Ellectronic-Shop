@@ -10,7 +10,7 @@ namespace Electro_Shop.Models
     public class ShoppingCart
     {
         [Key]
-        public int Id { get; set; }
+        public int CartId { get; set; }
         [Required]
         public string UserID { get; set; }
         [Required]

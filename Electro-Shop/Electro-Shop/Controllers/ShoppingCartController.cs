@@ -57,8 +57,9 @@ namespace Electro_Shop.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id, UserID, ProductID, Quantity")] ShoppingCart NewLine)
+        public async Task<IActionResult> Create([Bind("CartId ,UserID, , ProductID, Quantity")] ShoppingCart NewLine)
         {
+
             if (ModelState.IsValid)
             {
                 _ShoppingCartContext.Add(NewLine);

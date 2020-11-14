@@ -35,7 +35,7 @@ namespace Electro_Shop.Controllers
 
             foreach (var item in Categories)
             {
-                var TopProducts = _Pcontext.Product.Where(x => x.Category == item).OrderByDescending(x => x.SalesCounter).Take(4).ToList();
+                var TopProducts = _Pcontext.Product.Where(x => x.CategoryId == item.Id).OrderByDescending(x => x.SalesCounter).Take(4).ToList();
 
                 BestSellers.Add(new BestSeller { Name = item, Products = TopProducts });
             }

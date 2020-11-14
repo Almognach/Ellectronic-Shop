@@ -14,7 +14,7 @@ namespace Electro_Shop.Models
         public string Model { get; set; }
         public double Price { get; set; }
         public string Description { get; set; }
-        public Category Category { get; set; }
+        public int CategoryId { get; set; }
         public int SalesCounter { get; set; }
         public int InStock { get; set; }
         public Uri PathToImage { get; set; }

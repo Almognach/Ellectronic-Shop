@@ -1,4 +1,14 @@
-﻿@model Electro_Shop.Models.Product
+﻿@using Microsoft.AspNetCore.Identity
+@using Electro_Shop.Areas.Identity.Data
+@using Electro_Shop.Models;
+@using Electro_Shop.Data;
+@using Microsoft.EntityFrameworkCore;
+
+
+
+@model Electro_Shop.Models.ProductDetails
+@inject UserManager<ApplicationUser> UserManager
+@inject SignInManager<ApplicationUser> SignInManager
 
 @{
     ViewData["Title"] = "Details";
@@ -20,7 +30,7 @@
             <!--Grid column-->
             <div class="col-md-6 mb-4">
 
-                <img height="708" width="472" src="@Model.PathToImage" class="img-fluid" alt="">
+                <img height="708" width="472" src="@Model.productcategory.PathToImage" class="img-fluid" alt="">
 
             </div>
             <!--Grid column-->
@@ -32,30 +42,32 @@
 
                     <div class="mb-3">
                         <a href="">
-                            <span class="badge purple mr-1">category (to be completed once NULL will be fixed)</span>
+                            <span class="badge purple mr-1">@Model.productcategory.CategoryName</span>
                         </a>
                         <a href="">
-                            <span class="badge blue mr-1">@Model.Brand (to add link to search by brand)</span>
+                            <span class="badge blue mr-1">@Model.productcategory.Brand (to add link to search by brand)</span>
                         </a>
                     </div>
 
                     <p class="lead">
                         <span class="mr-1">
-                            <del>₪@Convert.ToInt32(@Model.Price * 1.15)</del>
+                            <del>₪@Convert.ToInt32(@Model.productcategory.Price * 1.15)</del>
                         </span>
-                        <span>₪@Model.Price</span>
+                        <span>₪@Model.productcategory.Price</span>
                     </p>
 
                     <p class="lead font-weight-bold">Description</p>
 
                     <p>
-                        @Model.Description
+                        @Model.productcategory.Description
                     </p>
 
-                    <form class="d-flex justify-content-left">
+                    <form class="d-flex justify-content-left"  asp-action="Create" asp-controller="ShoppingCart">
                         <!-- Default input -->
-                        <input type="number" value="1" aria-label="Search" class="form-control" style="width: 100px">
-                        <button style="height: 38px; margin-left:10px" class="btn btn-primary btn-md my-0 p" type="submit">
+                        <input name="UserID" id="UserID" value="@UserManager.GetUserId(User)" class="form-control" hidden />
+                        <input name="ProductID" id="ProductID" value="@Model.productcategory.Id" class="form-control" hidden />
+                        <input name="Quantity" id="Quantity" type="number" value="1" aria-label="Search" class="form-control" style="width: 100px">
+                        <button type="submit" value="Create" style="height: 38px; margin-left:10px" class="btn btn-primary btn-md my-0 p">
                             Add to cart
                             <i class="fas fa-shopping-cart ml-1"></i>
                         </button>
