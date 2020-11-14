@@ -55,7 +55,8 @@
                                                     </p>
 
                                                     <div class="m-t-sm">
-                                                        <a asp-action="Delete" asp-route-id="@item.Product.Id" class="text-muted"><i class="fa fa-trash"></i> Subtract 1 Quantity/Remove item </a>
+                                                        <a asp-action="Delete" asp-route-id="@item.Product.Id" class="text-muted"><i class="fa fa-trash"></i> Subtract 1 Quantity </a>
+                                                        <a asp-action="DeleteAll" asp-route-id="@item.Product.Id" class="text-muted"><i class="fa fa-trash"></i> Remove all quantites </a>
                                                     </div>
                                                 </td>
 

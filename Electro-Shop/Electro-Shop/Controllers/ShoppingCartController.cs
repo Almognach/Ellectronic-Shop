@@ -116,6 +116,27 @@ namespace Electro_Shop.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        public async Task<IActionResult> DeleteAll(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var delete_items = _ShoppingCartContext.ShoppingCartLines.Where(m => m.ProductID == id && m.UserID == _UserManager.GetUserId(User)).ToList();
+            if (delete_items == null)
+            {
+                return NotFound();
+            }
+            foreach (var item in delete_items)
+            {
+                _ShoppingCartContext.ShoppingCartLines.Remove(item);
+                await _ShoppingCartContext.SaveChangesAsync();
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
+
         public async Task<IActionResult> CheckOut()
         {
 
