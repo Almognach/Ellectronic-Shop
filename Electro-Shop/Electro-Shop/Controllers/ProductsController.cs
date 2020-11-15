@@ -27,6 +27,7 @@ namespace Electro_Shop.Controllers
             _userManager = userManager;
         }
 
+        [AdminAuthorizationRequirement]
         // GET: Products
         public async Task<IActionResult> Index(int ? categoryId = null)
         {
@@ -43,7 +44,7 @@ namespace Electro_Shop.Controllers
             var role = await _userManager.GetRolesAsync(new ApplicationUser { Id = _userManager.GetUserId(User) });
             if (role.FirstOrDefault() == "Admin") //Identity.Name == "Admin")
             {
-                return View("/Areas/AdminCenter/Views/Categories/AdminIndex", await _Productcontext.Product.ToListAsync());
+                return View("/Areas/AdminCenter/Views/Categories/AdminIndex.cshtml", await _Productcontext.Category.ToListAsync());
 
             } else
             {
@@ -114,8 +115,8 @@ namespace Electro_Shop.Controllers
             return View(productDetails);
         }
 
-        [Authorize(Roles = "Admin")]
         // GET: Products/Create
+        [AdminAuthorizationRequirement]
         public IActionResult Create()
         {
             return View();
@@ -124,7 +125,7 @@ namespace Electro_Shop.Controllers
         // POST: Products/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize(Roles = "Admin")]
+        [AdminAuthorizationRequirement]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Brand,Model,Price,Description,SalesCounter,InStock,PathToImage")] Product product)
@@ -139,7 +140,7 @@ namespace Electro_Shop.Controllers
         }
 
         // GET: Products/Edit/5
-        [Authorize(Roles = "Admin")]
+        [AdminAuthorizationRequirement]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -158,7 +159,7 @@ namespace Electro_Shop.Controllers
         // POST: Products/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize(Roles = "Admin")]
+        [AdminAuthorizationRequirement]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Brand,Model,Price,Description,SalesCounter,InStock,PathToImage")] Product product)
@@ -192,7 +193,7 @@ namespace Electro_Shop.Controllers
         }
 
         // GET: Products/Delete/5
-        [Authorize(Roles = "Admin")]
+        [AdminAuthorizationRequirement]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -211,7 +212,7 @@ namespace Electro_Shop.Controllers
         }
 
         // POST: Products/Delete/5
-        [Authorize(Roles = "Admin")]
+        [AdminAuthorizationRequirement]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

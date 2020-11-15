@@ -33,7 +33,7 @@ namespace Electro_Shop.Controllers
         }
 
         //// GET: Categories/Details/5
-        //[Authorize(Roles = "Admin")]
+        //[AdminAuthorizationRequirement]
         //public async Task<IActionResult> Details(int? id)
         //{
         //    if (id == null)
@@ -52,7 +52,7 @@ namespace Electro_Shop.Controllers
         //}
 
         // GET: Categories/Create
-        [Authorize(Roles = "Admin")]
+        [AdminAuthorizationRequirement]
         public IActionResult Create()
         {
             return View();
@@ -61,7 +61,7 @@ namespace Electro_Shop.Controllers
         // POST: Categories/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize(Roles = "Admin")]
+        [AdminAuthorizationRequirement]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name")] Category category)
@@ -76,7 +76,7 @@ namespace Electro_Shop.Controllers
         }
 
         // GET: Categories/Edit/5
-        [Authorize(Roles = "Admin")]
+        [AdminAuthorizationRequirement]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -95,7 +95,7 @@ namespace Electro_Shop.Controllers
         // POST: Categories/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize(Roles = "Admin")]
+        [AdminAuthorizationRequirement]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name")] Category category)
@@ -129,7 +129,7 @@ namespace Electro_Shop.Controllers
         }
 
         // GET: Categories/Delete/5
-        [Authorize(Roles = "Admin")]
+        [AdminAuthorizationRequirement]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -148,7 +148,7 @@ namespace Electro_Shop.Controllers
         }
 
         // POST: Categories/Delete/5
-        [Authorize(Roles = "Admin")]
+        [AdminAuthorizationRequirement]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
