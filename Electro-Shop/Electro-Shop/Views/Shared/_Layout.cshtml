@@ -13,8 +13,8 @@
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
-                    
-                    <img src="~/image/Banner2.jpg" width="180" height="80"/>
+
+                    <img src="~/image/Banner2.jpg" width="180" height="80" />
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -47,6 +47,29 @@
             </div>
         </nav>
     </header>
+
+    <div class="input-group search-input-areaa">
+        <div class="search-container">
+            <input type="text" class="form-control qSearch inputSearch search-input autocomplete_site_search readonly_exception ui-autocomplete-input inited" autocomplete="off" id="qSearch" name="q" value="" placeholder="חפש/י מוצר/ים או מק&quot;ט..." style="direction: rtl; right: 50;
+            <img src="~/image/spot_icon.png" width="80" right="50" class="clear-search" aria-hidden="true" data-lazy-added="1">
+
+
+
+
+        </div>
+        <span id="site-search-helper" role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span>
+        <i class="fa fa-times cancelinputsearchdesktop" aria-hidden="true"></i>
+        <div id="autoFillSearch" class="autoFillSearch" style="width: 94%;right: 0;overflow-y:none;padding: 0 15px;min-height:fit-content;top: 47px;"></div>
+        <span class="input-group-btn segee" id="searchButtonHolder">
+            <button class="btn btn-secondary" id="searchButton" type="image">
+                <svg class="header-search-icon-color" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 31">
+
+                    <path class="cls-1" d="M601.731,100.339l-4.726-7.567a12.176,12.176,0,0,0,3.729-8.839c0-6.591-5.089-11.934-11.367-11.934S578,77.342,578,83.933s5.089,11.934,11.367,11.934a10.877,10.877,0,0,0,4.925-1.176l4.7,7.531a1.589,1.589,0,0,0,2.265.494h0A1.77,1.77,0,0,0,601.731,100.339Zm-12.364-6.628a9.79,9.79,0,1,1,9.314-9.778A9.554,9.554,0,0,1,589.367,93.711Zm6.771-14.646a7.043,7.043,0,0,0-6.22-3.905,0.48,0.48,0,0,0-.551.458h0a0.426,0.426,0,0,0,.345.457,6.678,6.678,0,0,1,5.752,3.609,0.363,0.363,0,0,0,.338.162A0.485,0.485,0,0,0,596.138,79.064Z" transform="translate(-578 -72)"></path>
+                </svg>
+            </button>
+        </span>
+    </div>
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()

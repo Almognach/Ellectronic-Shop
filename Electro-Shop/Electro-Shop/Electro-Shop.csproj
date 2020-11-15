@@ -27,7 +27,6 @@
     <Folder Include="Views\BestSellers\" />
     <Folder Include="Views\ContactUs\" />
     <Folder Include="Views\AboutUs\" />
-    <Folder Include="wwwroot\image\" />
     <Folder Include="Views\ShoppingCart\" />
     <Folder Include="Views\Orders\" />
   </ItemGroup>
