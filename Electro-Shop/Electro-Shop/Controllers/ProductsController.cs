@@ -27,31 +27,10 @@ namespace Electro_Shop.Controllers
             _userManager = userManager;
         }
 
-        [AdminAuthorizationRequirement]
         // GET: Products
         public async Task<IActionResult> Index(int ? categoryId = null)
-        {
-            // Safe to delete, really:
-            //var user = new ApplicationUser { Id = "30f2a51f-b0bd-4820-90e6-64ce38a2d559", Email = "Admin@ElectroShop.co.il" };
-            //var role = await _userManager.GetRolesAsync(user);
-            //foreach (var claim in User.Claims)
-            //{
-            //    Console.WriteLine(claim);
-            //}
-            // Until here --------------------------
-            // TODO: User category ID to filter the products that will be listed
-            
-            var role = await _userManager.GetRolesAsync(new ApplicationUser { Id = _userManager.GetUserId(User) });
-            if (role.FirstOrDefault() == "Admin") //Identity.Name == "Admin")
-            {
-                return View("/Areas/AdminCenter/Views/Categories/AdminIndex.cshtml", await _Productcontext.Category.ToListAsync());
-
-            } else
-            {
+        {           
                 return View(await _Productcontext.Product.ToListAsync());
-            }
-
-            // TODO: Create authorize attribute derivative and change role check methodology
         }
 
         // GET: Products/Details/5
