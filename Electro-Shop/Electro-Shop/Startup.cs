@@ -29,6 +29,11 @@ namespace Electro_Shop
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //services.AddAuthorization(options =>
+            //{
+            //    options.AddPolicy("RequireAdministratorRole",
+            //        policy => policy.RequireUserName("Admin@ElectroShop.co.il"));
+            //});
             services.AddAuthentication()
                 .AddGoogle(options =>
                 {
