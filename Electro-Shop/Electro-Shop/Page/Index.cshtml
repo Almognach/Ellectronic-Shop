@@ -1,0 +1,36 @@
+﻿@page
+@model Electro_Shop.Page.IndexModel
+@{
+}
+
+<html>
+<head>
+    <meta name="viewport" contect="width=device-width"  />
+    <title>Index</title>
+</head>
+<body>
+
+    <h3>Product List</h3>
+    <table border="1">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Photo</th>
+            <th>Price</th>
+            <th>Action</th>
+        </tr>
+        @foreach (var product in Model.Products)
+        {
+            <tr>
+                <td>@product.Id</td>
+                <td>@product.Brand</td>
+                <td>@product.Model</td>
+                <td><img src="~/image/@product.Price" width="120" /></td>
+                <td>@product.Price</td>
+                <td>Buy Now</td>
+            </tr>
+        }
+    </table>    
+
+</body>
+</html>

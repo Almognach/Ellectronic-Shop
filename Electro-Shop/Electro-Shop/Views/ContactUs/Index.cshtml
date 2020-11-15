@@ -1,0 +1,201 @@
+﻿@model Electro_Shop.Models.ContactUs
+
+@{
+    ViewData["Title"] = "Contact us";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Scripts {
+
+    <script>// Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function () {
+            'use strict';
+            window.addEventListener('load', function () {
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+
+                var form = $('#contactForm');
+                form.submit(function (event) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    if (form[0].checkValidity() === false) {
+
+                    }
+                    else {
+                        $('#exampleModal').modal();
+                        var formdata = {};
+
+                        form[0].reset();
+                        form.removeClass('was-validated')
+    @*form.submit(function (event) { event.submit }*@
+
+    <!--return;
+                }
+                form.submit()
+                form.addClass('was-validated');
+            });
+
+        }, false);
+    })();</script>
+
+}
+@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+
+@*HTML*@
+
+
+<div>
+    <div class="row">
+        <div class="col-md-12">
+        </div>
+    </div>
+</div>
+<div class="parallax texture" id="parallax-cta"></div>
+<div class="container form">
+    <link rel="stylesheet" href="~/css/site.css" />
+    <div class="row">
+        <div class="col-md-7">
+            <div class="row">
+                <aside>
+                    <div class="form-group col-md-12">
+                        <h2>Contact Us!</h2>
+                        <p style="color: #000">Contact us and our team will be back to you within 2 buisness days.</p>
+                    </div>
+            </div>
+            <form id="contactForm" class="needs-validation" asp-controller="ContactUs" asp-action="Create">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="control-group">
+                            <label>First Name</label>
+                            <input class="demo-default form-control js-form-input" asp-validation-for="@Model.Submit.FirstName" placeholder="First Name" name="FirstName" required>
+                            <div class="invalid-feedback">
+                                Please enter first name
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label>Last Name</label>
+                            <input class="demo-default form-control js-form-input" asp-validation-for="@Model.Submit.LastName" placeholder="Last Name" name="LastName" required>
+                            <div class="invalid-feedback">
+                                Please enter last name
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label>Phone #</label>
+                            <input class="demo-default form-control js-form-input" asp-validation-for="@Model.Submit.PhoneNumber" placeholder="Phone #" name="PhoneNumber" required>
+                            <div class="invalid-feedback">
+                                Please enter phone number
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label>Email</label>
+                            <input type="email" class="demo-default form-control js-form-input" asp-validation-for="@Model.Submit.Email" placeholder="yourname@domain.com" name="Email" required>
+
+                            <div class="invalid-feedback">
+                                Please enter email adress
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label for="select-beast">I have an issue with</label>
+                            <select class="form-control form-control-sm js-form-select" asp-validation-for="@Model.Submit.IssueWith" label="I have an issue with" placeholder="Select a service..." name="IssueWith" required>
+                                <option value="">Select a service...</option>
+                                <option value="Website issues">Website issues</option>
+                                <option value="Catalog issues">Catalog issues</option>
+                                <option value="Delivery issues">Delivery issues</option>
+                                <option value="Other">Other</option>
+                            </select>
+                            <div class="invalid-feedback">
+                                Please select an issue
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="form-group col-md-12 text-center">
+                        <button type="submit" class="btn btn-primary">
+                            Submit
+                        </button>
+                    </div>
+                </div>
+            </form>
+            </aside>
+        </div>
+        <div class="col-md-5 contact-right-info">
+
+            <div align="center" class="float-left">
+                @foreach (var item in Model.Branches)
+                {
+                    <h2> @item.CityName Branch </h2>
+                    <p style="color: #000000">
+                        @item.StreetName St <br />
+                        @item.CityName<br />
+                        <a href="https://www.google.com/maps/place/Mapu+St+12,+Tel+Aviv-Yafo/32.0805756,34.7672356,17z/data=!3m1!4b1!4m5!3m4!1s0x151d4c79445538e3:0x83b3d14d05aa620c!8m2!3d32.0805756!4d34.7694243" style="color: #d2282e;" target="_blank"> Directions</a>
+                        <br />   <a href="tel:03937548"> @item.PhoneNumber</a>
+                    </p>
+                }
+                <h2>EMAIL ADDRESS</h2>
+                <a href="mailto:info@electro-shop.com">info@electro-shop.com</a>
+                <h2>SUPPORT</h2>
+                <a href="tel:039031414">03-9031414</a><br />
+                <a href="mailto:support@electro-shop.com">support@electro-shop.com</a>
+            </div>
+        </div>
+    </div>
+</div>
+    </br>
+    contact-map
+<title> Add Map</title>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAfUgH5eeVvn-TG9Cmrx7BTDUNV22NfORc&callback=initMap&libraries=&v=weekly"
+        defer></script>
+<style type="text/css">
+    /* Set the size of the div element that contains the map */
+    #map {
+        height: 400px;
+        /* The height is 400 pixels */
+        width: 100%;
+        /* The width is the width of the web page */
+    }
+</style>
+<script>// Initialize and add the map
+    function initMap() {
+        // The location of tel aviv branch
+        const TLV_branch = {
+            lat: 32.08052, lng: 34.7712151
+        };
+
+        // The map, centered at tel aviv branch
+
+        const map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 17,
+            center: TLV_branch,
+        })
+        // The marker, positioned at tel aviv branch
+
+        const marker = new google.maps.Marker({
+            position: TLV_branch,
+            map: map,
+        });
+    }</script>
+<div id="map"></div>
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Issue submitted</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Thank you for submitting, our team will send a respond in up to 2 buisness days.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
