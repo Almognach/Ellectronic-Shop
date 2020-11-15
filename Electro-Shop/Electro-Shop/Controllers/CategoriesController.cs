@@ -13,11 +13,11 @@ namespace Electro_Shop.Controllers
 {
     public class CategoriesController : Controller
     {
-        private readonly ProductContext _context;
+        private readonly ProductContext _Productcontext;
 
         public CategoriesController(ProductContext context)
         {
-            _context = context;
+            _Productcontext = context;
         }
 
         // GET: Categories
@@ -25,10 +25,10 @@ namespace Electro_Shop.Controllers
         {
             if (User.Identity.Name == "Admin")
             {
-                return View("/Areas/AdminCenter/Views/Categories/AdminIndex.cshtml", await _context.Category.ToListAsync());
+                return View("/Areas/AdminCenter/Views/Categories/AdminIndex.cshtml", await _Productcontext.Category.ToListAsync());
             } else
             {
-                return View(await _context.Category.ToListAsync());
+                return View(await _Productcontext.Category.ToListAsync());
             }
         }
 
@@ -68,8 +68,8 @@ namespace Electro_Shop.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(category);
-                await _context.SaveChangesAsync();
+                _Productcontext.Add(category);
+                await _Productcontext.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(category);
@@ -84,7 +84,7 @@ namespace Electro_Shop.Controllers
                 return NotFound();
             }
 
-            var category = await _context.Category.FindAsync(id);
+            var category = await _Productcontext.Category.FindAsync(id);
             if (category == null)
             {
                 return NotFound();
@@ -109,8 +109,8 @@ namespace Electro_Shop.Controllers
             {
                 try
                 {
-                    _context.Update(category);
-                    await _context.SaveChangesAsync();
+                    _Productcontext.Update(category);
+                    await _Productcontext.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -137,7 +137,7 @@ namespace Electro_Shop.Controllers
                 return NotFound();
             }
 
-            var category = await _context.Category
+            var category = await _Productcontext.Category
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (category == null)
             {
@@ -153,15 +153,15 @@ namespace Electro_Shop.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var category = await _context.Category.FindAsync(id);
-            _context.Category.Remove(category);
-            await _context.SaveChangesAsync();
+            var category = await _Productcontext.Category.FindAsync(id);
+            _Productcontext.Category.Remove(category);
+            await _Productcontext.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool CategoryExists(int id)
         {
-            return _context.Category.Any(e => e.Id == id);
+            return _Productcontext.Category.Any(e => e.Id == id);
         }
 
         public IActionResult ListProducts(int categoryId)
@@ -169,5 +169,29 @@ namespace Electro_Shop.Controllers
 
             return RedirectToAction("Index", "Products", categoryId);
         }
+
+        public async Task<IActionResult> List(int? id)
+        {
+
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var category = await _Productcontext.Category
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (category == null)
+            {
+                return NotFound();
+            }
+
+            var categoryProducts = new BestSeller();
+
+            var Categories = _Productcontext.Category.ToList();
+            categoryProducts.Category = category;
+
+            categoryProducts.Products = _Productcontext.Product.Where(x => x.CategoryId == category.Id).ToList();
+            return View(categoryProducts);
+        }
+
     }
 }

@@ -37,7 +37,7 @@ namespace Electro_Shop.Controllers
             {
                 var TopProducts = _Pcontext.Product.Where(x => x.CategoryId == item.Id).OrderByDescending(x => x.SalesCounter).Take(4).ToList();
 
-                BestSellers.Add(new BestSeller { Name = item, Products = TopProducts });
+                BestSellers.Add(new BestSeller { Category = item, Products = TopProducts });
             }
             return View(BestSellers);
         }

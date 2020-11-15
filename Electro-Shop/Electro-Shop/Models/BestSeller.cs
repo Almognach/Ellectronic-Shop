@@ -10,7 +10,7 @@ namespace Electro_Shop.Models
     public class BestSeller
     {
         
-        public Category Name { get; set; }
+        public Category Category { get; set; }
         public List<Product> Products { get; set; }
 
     }

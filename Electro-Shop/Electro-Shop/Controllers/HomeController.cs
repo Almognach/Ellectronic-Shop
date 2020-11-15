@@ -25,7 +25,7 @@ namespace Electro_Shop.Controllers
         {
             var TopProducts = _Pcontext.Product.OrderByDescending(x => x.SalesCounter).Take(12).ToList();
 
-            var BestSellers = new BestSeller{ Name = null, Products = TopProducts };
+            var BestSellers = new BestSeller{ Category = null, Products = TopProducts };
          
             return View(BestSellers);
         }
