@@ -29,7 +29,10 @@ namespace Electro_Shop.Controllers
          
             return View(BestSellers);
         }
-
+        public IActionResult Test()
+        {
+            return View();
+        }
         public IActionResult Privacy()
         {
             return View();
