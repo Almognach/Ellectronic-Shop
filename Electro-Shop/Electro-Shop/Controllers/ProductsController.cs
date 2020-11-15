@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Electro_Shop.Data;
 using Electro_Shop.Models;
 using Microsoft.AspNetCore.Authorization;
+using Electro_Shop.Areas.Identity.Data;
+using Microsoft.AspNetCore.Identity;
 
 namespace Electro_Shop.Controllers
 {
@@ -16,26 +17,40 @@ namespace Electro_Shop.Controllers
         private readonly ProductContext _Productcontext;
         private readonly CategoryContext _Categorycontext;
         private readonly ShoppingCartContext _ShoppingCartcontext;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public ProductsController(ProductContext Productcontext, CategoryContext categorycontext, ShoppingCartContext shoppingcartcontext)
+        public ProductsController(ProductContext Productcontext, CategoryContext categorycontext, ShoppingCartContext shoppingcartcontext, UserManager<ApplicationUser> userManager)
         {
             _Productcontext = Productcontext;
             _Categorycontext = categorycontext;
             _ShoppingCartcontext = shoppingcartcontext;
+            _userManager = userManager;
         }
 
         // GET: Products
         public async Task<IActionResult> Index(int ? categoryId = null)
         {
+            // Safe to delete, really:
+            //var user = new ApplicationUser { Id = "30f2a51f-b0bd-4820-90e6-64ce38a2d559", Email = "Admin@ElectroShop.co.il" };
+            //var role = await _userManager.GetRolesAsync(user);
+            //foreach (var claim in User.Claims)
+            //{
+            //    Console.WriteLine(claim);
+            //}
+            // Until here --------------------------
             // TODO: User category ID to filter the products that will be listed
-            if (User.Identity.Name == "Admin")
+            
+            var role = await _userManager.GetRolesAsync(new ApplicationUser { Id = _userManager.GetUserId(User) });
+            if (role.FirstOrDefault() == "Admin") //Identity.Name == "Admin")
             {
-                return View("/Areas/AdminCenter/Views/Categories/AdminIndex", await _context.Product.ToListAsync());
+                return View("/Areas/AdminCenter/Views/Categories/AdminIndex", await _Productcontext.Product.ToListAsync());
 
             } else
             {
-                return View(await _context.Product.ToListAsync());
+                return View(await _Productcontext.Product.ToListAsync());
             }
+
+            // TODO: Create authorize attribute derivative and change role check methodology
         }
 
         // GET: Products/Details/5
@@ -53,14 +68,14 @@ namespace Electro_Shop.Controllers
             }
 
             var category = await _Categorycontext.Category
-                .FirstOrDefaultAsync(m => m.Id == product.CategoryId);
+                .FirstOrDefaultAsync(m => m.Id == product.Category.Id);
             if (category == null)
             {
                 return NotFound();
             }
 
             var productCategory = (from p in _Productcontext.Product
-                          join c in _Productcontext.Category on p.CategoryId equals category.Id
+                          join c in _Productcontext.Category on p.Category.Id equals category.Id
                           select new
                           {
                            p.Id,

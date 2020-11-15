@@ -11,6 +11,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Electro_Shop.Data;
+using Electro_Shop.Areas.Identity.Data;
+using Microsoft.AspNetCore.Identity;
 
 namespace Electro_Shop
 {
@@ -72,7 +74,7 @@ namespace Electro_Shop
             services.AddDbContext<ShoppingCartContext>(options =>
              options.UseSqlServer(Configuration.GetConnectionString("ShoppingCartContext")));
             services.AddDbContext<OrdersContext>(options =>
-          options.UseSqlServer(Configuration.GetConnectionString("OrdersContext")));
+            options.UseSqlServer(Configuration.GetConnectionString("OrdersContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
