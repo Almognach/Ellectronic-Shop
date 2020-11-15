@@ -51,7 +51,7 @@ namespace Electro_Shop.Controllers
             }
 
             var productCategory = (from p in _Productcontext.Product
-                          join c in _Productcontext.Category on p.CategoryId equals category.Id
+                          join c in _Productcontext.Category on p.CategoryId equals c.Id
                           select new
                           {
                            p.Id,
@@ -64,9 +64,9 @@ namespace Electro_Shop.Controllers
                            p.InStock,
                            p.SalesCounter,
                            c.Name
-                          }).ToList();
+                          }).Where(x => x.Id == id).ToList();
 
-            var productcategoryjoined = new ProdudctCategoryJoined
+            var productcategoryjoined = new ProdudctCategoryJoined()
             {
                 Id = productCategory[0].Id,
                 Brand = productCategory[0].Brand,
