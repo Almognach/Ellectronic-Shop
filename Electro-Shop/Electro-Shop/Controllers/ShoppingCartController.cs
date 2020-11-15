@@ -34,6 +34,7 @@ namespace Electro_Shop.Controllers
 
         public IActionResult Index()
         {
+            // Present your shopping cart items
             var ShoppingCartView = new ShoppingCartView();
             ShoppingCartView.Product_Quantity = new List<Product_Quantity>();
 
@@ -68,6 +69,51 @@ namespace Electro_Shop.Controllers
                 }
                 ShoppingCartView.FinalPrice += product[0].Price * item.Quantity;
             }
+
+            // Present reccomended items for you (Items from the same category as your best sellers but you didn't purchase them)
+            var recommendedList = new List<Product>();
+            
+            // Desc Count of product ID's from your past order lines
+            var topProducts = _OrderContext.OrderLines.Where(x => x.UserID == userID)
+            .Select(x => new { x.ProductID, x.Quantity })
+            .GroupBy(x => x.ProductID, (key, group) => new { productId = key, count = group.Sum(x => x.Quantity) })
+            .OrderByDescending(x => x.count).ToList(); ;
+
+
+            var topProductWCategories = (from p in topProducts
+                                         join c in _ProductContext.Product on p.productId equals c.Id
+                                         select new
+                                         {
+                                             p.productId,
+                                             p.count,
+                                             c.CategoryId
+                                         }).ToList();
+
+            //5 top Categories ID's from you past order lines
+            var topCategories = (from p in topProducts
+             join c in _ProductContext.Product on p.productId equals c.Id
+             select new
+             {
+                p.productId,
+                p.count,
+                c.CategoryId
+             }).GroupBy(x => x.CategoryId, (key, group) => new { CategoryId = key, count = group.Sum(x => x.count) })
+             .OrderByDescending(x => x.count).Take(5).ToList();
+
+            //Adds to 5 top items
+            foreach (var category in topCategories)
+            {
+                var allByCategoryList = _ProductContext.Product
+                    .Where(x => x.CategoryId == category.CategoryId)
+                    .OrderByDescending(x => x.SalesCounter)
+                    .ToList();
+
+                var recommendProduct = allByCategoryList.Where(x => !topProducts.Exists(y => y.productId == x.Id)).Take(1).ToList();
+                recommendedList.Add(recommendProduct[0]);
+            }
+
+            ShoppingCartView.Reccomended = recommendedList;
+
             return View(ShoppingCartView);
         }
 
@@ -136,8 +182,7 @@ namespace Electro_Shop.Controllers
 
             return RedirectToAction(nameof(Index));
         }
-
-        public async Task<IActionResult> CheckOut()
+            public async Task<IActionResult> CheckOut()
         {
 
             var ShoppingCartView = new ShoppingCartView();

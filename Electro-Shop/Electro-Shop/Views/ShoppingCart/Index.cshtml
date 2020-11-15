@@ -115,32 +115,20 @@
 
                     <div class="ibox">
                         <div class="ibox-content">
-
                             <p class="font-bold">
                                 Other products you may be interested
                             </p>
                             <hr>
-                            <div>
-                                <a href="#" class="product-name"> Product 1</a>
-                                <div class="small m-t-xs">
-                                    Many desktop publishing packages and web page editors now.
+                            @foreach (var product in Model.Reccomended)
+                            {
+                                <div>
+                                    <a asp-controller="Products" asp-action="Details" asp-route-id="@product.Id" class="product-name"> @product.Brand @product.Model</a>
+                                    <div class="small m-t-xs">
+                                        <img width="70" src="@product.PathToImage" class="img-fluid" alt="">
+                                    </div>
                                 </div>
-                                <div class="m-t text-righ">
-
-                                    <a href="#" class="btn btn-xs btn-outline btn-primary">Info <i class="fa fa-long-arrow-right"></i> </a>
-                                </div>
-                            </div>
-                            <hr>
-                            <div>
-                                <a href="#" class="product-name"> Product 2</a>
-                                <div class="small m-t-xs">
-                                    Many desktop publishing packages and web page editors now.
-                                </div>
-                                <div class="m-t text-righ">
-
-                                    <a href="#" class="btn btn-xs btn-outline btn-primary">Info <i class="fa fa-long-arrow-right"></i> </a>
-                                </div>
-                            </div>
+                                <hr>
+                            }
                         </div>
                     </div>
                 </div>
