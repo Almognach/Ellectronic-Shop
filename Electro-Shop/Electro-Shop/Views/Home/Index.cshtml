@@ -52,24 +52,14 @@
             })
         })();</script>
 
-    @*<script>public void AddItem(string ProductID, int UserID, int Quantity)
-        {
-            var ShoppingCartLine = new @Cart ShoppingCart
-            {
-                ProductID = Productid,
-                    UserID = Userid,
-                    Quantity = quantity
-            };
+@*<script>
+    (function () {
+        window.addEventListener('submit', function () {
+                        
 
-            if (ModelState.IsValid) {
-                _ShoppingCartContext.Add(ShoppingCartLine);
-                await _ShoppingCartContext.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return RedirectToAction(nameof(Index));
 
-        }</script>*@
 
+</script>*@
 
 }
 
@@ -428,7 +418,10 @@
             </div>
         </div>
     </div>
-</div>
+</div
+
+
+
 
 <div class="container bootstrap snippets bootdey">
     <h1> Technology news feed </h1>

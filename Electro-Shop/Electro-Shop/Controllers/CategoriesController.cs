@@ -164,7 +164,7 @@ namespace Electro_Shop.Controllers
             return _context.Category.Any(e => e.Id == id);
         }
 
-        public async Task<IActionResult> ListProducts(int categoryId)
+        public IActionResult ListProducts(int categoryId)
         {
 
             return RedirectToAction("Index", "Products", categoryId);

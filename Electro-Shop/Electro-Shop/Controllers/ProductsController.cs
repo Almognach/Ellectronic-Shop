@@ -69,14 +69,14 @@ namespace Electro_Shop.Controllers
             }
 
             var category = await _Categorycontext.Category
-                .FirstOrDefaultAsync(m => m.Id == product.Category.Id);
+                .FirstOrDefaultAsync(m => m.Id == product.CategoryId);
             if (category == null)
             {
                 return NotFound();
             }
 
             var productCategory = (from p in _Productcontext.Product
-                          join c in _Productcontext.Category on p.Category.Id equals category.Id
+                          join c in _Productcontext.Category on p.CategoryId equals category.Id
                           select new
                           {
                            p.Id,
