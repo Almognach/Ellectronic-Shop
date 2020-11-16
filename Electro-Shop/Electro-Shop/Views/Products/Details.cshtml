@@ -38,31 +38,21 @@
             <div class="col-md-6 mb-4">
 
                 <!--Content-->
+                <h4><a> @Model.productcategory.Brand @Model.productcategory.Model </a></h4>
                 <div class="p-4">
-
-                    <div class="mb-3">
-                        <a href="">
-                            <span class="badge purple mr-1">@Model.productcategory.CategoryName</span>
-                        </a>
-                        <a href="">
-                            <span class="badge blue mr-1">@Model.productcategory.Brand (to add link to search by brand)</span>
-                        </a>
-                    </div>
-
                     <p class="lead">
                         <span class="mr-1">
                             <del>₪@Convert.ToInt32(@Model.productcategory.Price * 1.15)</del>
                         </span>
                         <span>₪@Model.productcategory.Price</span>
                     </p>
-
                     <p class="lead font-weight-bold">Description</p>
 
                     <p>
                         @Model.productcategory.Description
                     </p>
 
-                    <form class="d-flex justify-content-left"  asp-action="Create" asp-controller="ShoppingCart">
+                    <form class="d-flex justify-content-left" asp-action="Create" asp-controller="ShoppingCart">
                         <!-- Default input -->
                         <input name="UserID" id="UserID" value="@UserManager.GetUserId(User)" class="form-control" hidden />
                         <input name="ProductID" id="ProductID" value="@Model.productcategory.Id" class="form-control" hidden />

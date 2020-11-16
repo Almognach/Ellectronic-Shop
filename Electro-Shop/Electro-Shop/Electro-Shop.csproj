@@ -34,5 +34,6 @@
     <Folder Include="Views\AboutUs\" />
     <Folder Include="Views\ShoppingCart\" />
     <Folder Include="Views\Orders\" />
+    <Folder Include="Views\Search\" />
   </ItemGroup>
 </Project>

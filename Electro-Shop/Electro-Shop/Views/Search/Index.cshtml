@@ -4,13 +4,13 @@
 @using Electro_Shop.Data;
 @using Microsoft.EntityFrameworkCore;
 
-@model IEnumerable<Electro_Shop.Models.BestSeller>
+@model List<Product>;
 
 @inject UserManager<ApplicationUser> UserManager
 @inject SignInManager<ApplicationUser> SignInManager
 
 @{
-    ViewData["Title"] = "Best sellers";
+    ViewData["Title"] = "Results";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -19,16 +19,15 @@
     <script>new WOW().init();</script>
 }
 
-@foreach (var category in Model)
-{
+
+<h1>  Search results - You have found (@Model.Count) Products</h1>
 
     <div class="shop-items">
         <link rel="stylesheet" href="~/css/bestsellers.css" />
         <div class="container-fluid">
-            <h2><a asp-controller="Categories" asp-action="List" asp-route-id="@category.Category.Id"> @category.Category.Name</a> </h2>
             <div class="row">
 
-                @foreach (var product in category.Products)
+                @foreach (var product in @Model)
                 {
                     <div class="col-md-3 col-sm-6">
                         <!-- Restaurant Item -->
@@ -57,6 +56,5 @@
             </div>
         </div>
     </div>
-}
 
 
