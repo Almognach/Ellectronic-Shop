@@ -1,10 +1,23 @@
-﻿@model IEnumerable<Electro_Shop.Models.BestSeller>
+﻿@using Microsoft.AspNetCore.Identity
+@using Electro_Shop.Areas.Identity.Data
+@using Electro_Shop.Models;
+@using Electro_Shop.Data;
+@using Microsoft.EntityFrameworkCore;
+
+@model IEnumerable<Electro_Shop.Models.BestSeller>
+
+@inject UserManager<ApplicationUser> UserManager
+@inject SignInManager<ApplicationUser> SignInManager
+
 @{
     ViewData["Title"] = "Best sellers";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@section Scripts {}
+@section Scripts {
+
+    <script>new WOW().init();</script>
+}
 
 @foreach (var category in Model)
 {
@@ -12,7 +25,7 @@
     <div class="shop-items">
         <link rel="stylesheet" href="~/css/bestsellers.css" />
         <div class="container-fluid">
-            <h2>  @category.Name.Name </h2>
+            <h2><a asp-controller="Categories" asp-action="List" asp-route-id="@category.Category.Id"> @category.Category.Name</a> </h2>
             <div class="row">
 
                 @foreach (var product in category.Products)
@@ -25,13 +38,18 @@
                             <!-- Item details -->
                             <div class="item-dtls">
                                 <!-- product title -->
-                                <h4><a href="#">@product.Brand  @product.Model </a></h4>
+                                <h4><a asp-controller="Products" asp-action="Details" asp-route-id="@product.Id">@product.Brand  @product.Model </a></h4>
                                 <!-- price -->
                                 <span class="price lblue">₪@product.Price</span>
                             </div>
                             <!-- add to cart btn -->
                             <div class="ecom bg-lblue">
-                                <a class="btn" href="#">Add to cart</a>
+                                <form asp-action="Create" asp-controller="ShoppingCart">
+                                    <input name="UserID" id="UserID" value="@UserManager.GetUserId(User)" hidden />
+                                    <input name="ProductID" id="ProductID" value="@product.Id" hidden />
+                                    <input name="Quantity" id="Quantity" type="number" value="1" hidden>
+                                    <button class="btn" type="submit">Add to cart</button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -39,8 +57,6 @@
             </div>
         </div>
     </div>
-
 }
-
 
 

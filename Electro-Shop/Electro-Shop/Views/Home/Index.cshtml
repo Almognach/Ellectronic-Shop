@@ -1,5 +1,16 @@
-﻿@model Electro_Shop.Models.BestSeller
+﻿@using Microsoft.AspNetCore.Identity
+@using Electro_Shop.Areas.Identity.Data
+@using Electro_Shop.Models;
+@using Electro_Shop.Data;
+@using Microsoft.EntityFrameworkCore;
+
+@model Electro_Shop.Models.BestSeller
+@inject UserManager<ApplicationUser> UserManager
+@inject SignInManager<ApplicationUser> SignInManager
+
+
 @{
+
     ViewData["Title"] = "Home Page";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -7,8 +18,48 @@
 @section Scripts {
 
     <script>$('.carousel').carousel({
-            interval: 5000
+            interval: 3000
         })</script>
+
+    <script>(function () {
+            window.addEventListener('load', function () {
+
+                $.get("https://api.nytimes.com/svc/topstories/v2/technology.json?api-key=FKt9wkCL0mnzCINpT5QZQrcZZ6qHUSIi", function (data) {
+                    $(".result").html(data);
+                    var Row = $("#FatherRow");
+                    var count = 0;
+                    data.results.forEach(item => {
+                        count++;
+                        var generate = $([
+                            "       <div class='col-sm-4'>",
+                            "            <div class='widget single-news'>",
+                            "                <div class='image'>",
+                            "                    <img height='300' width='200' src='" + item.multimedia[0].url + "' class='img-responsive'>",
+                            "                        <span class='gradient'></span>",
+                            "    </div>",
+                            "                    <div class='details'>",
+                            "                        <div class='category'><a href=''>" + item.section + "</a></div>",
+                            "                        <h3><a href='" + item.url + "'>" + item.title + "</a></h3>",
+                            "                    </div>",
+                            "                </div>",
+                            "            </div> "
+                        ].join("\n"));
+                        if (count < 7) {
+                            Row.append(generate);
+                        }
+                    });
+                });
+            })
+        })();</script>
+
+    @*<script>
+            (function () {
+                window.addEventListener('submit', function () {
+
+
+
+
+        </script>*@
 
 }
 
@@ -16,11 +67,10 @@
 
 @*Best sellers carousel*@
 
-
 <div class="shop-items">
     <div class="container-fluid">
         @*Best sellers carousel*@
-        <a class="nav-link text-dark" asp-area="" asp-controller="BestSellers" asp-action="Index"> Best Selling products</a>
+        <h1>  <a class="nav-link text-dark" asp-controller="BestSellers" asp-action="Index"> Best Selling products</a> </h1>
         <div class="container my-4">
             <link rel="stylesheet" href="~/css/bestsellers.css" />
 
@@ -57,13 +107,18 @@
                                     <!-- Item details -->
                                     <div class="item-dtls">
                                         <!-- product title -->
-                                        <h4><a href="#">@Model.Products.ElementAt(0).Brand @Model.Products.ElementAt(0).Model </a></h4>
+                                        <h4><a asp-controller="Products" asp-action="Details" asp-route-id="@Model.Products.ElementAt(0).Id">@Model.Products.ElementAt(0).Brand @Model.Products.ElementAt(0).Model </a></h4>
                                         <!-- price -->
                                         <span class="price lblue">₪@Model.Products.ElementAt(0).Price</span>
                                     </div>
                                     <!-- add to cart btn -->
                                     <div class="ecom bg-lblue">
-                                        <a class="btn" href="#">Add to cart</a>
+                                        <form asp-action="Create" asp-controller="ShoppingCart">
+                                            <input name="UserID" id="UserID" value="@UserManager.GetUserId(User)" hidden />
+                                            <input name="ProductID" id="ProductID" value="@Model.Products.ElementAt(0).Id" hidden />
+                                            <input name="Quantity" id="Quantity" type="number" value="1" hidden>
+                                            <button class="btn" type="submit">Add to cart</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -77,13 +132,18 @@
                                     <!-- Item details -->
                                     <div class="item-dtls">
                                         <!-- product title -->
-                                        <h4><a href="#">@Model.Products.ElementAt(1).Brand @Model.Products.ElementAt(1).Model </a></h4>
+                                        <h4><a asp-controller="Products" asp-action="Details" asp-route-id="@Model.Products.ElementAt(1).Id">@Model.Products.ElementAt(1).Brand @Model.Products.ElementAt(1).Model </a></h4>
                                         <!-- price -->
                                         <span class="price lblue">₪@Model.Products.ElementAt(1).Price</span>
                                     </div>
                                     <!-- add to cart btn -->
                                     <div class="ecom bg-lblue">
-                                        <a class="btn" href="#">Add to cart</a>
+                                        <form asp-action="Create" asp-controller="ShoppingCart">
+                                            <input name="UserID" id="UserID" value="@UserManager.GetUserId(User)" hidden />
+                                            <input name="ProductID" id="ProductID" value="@Model.Products.ElementAt(1).Id" hidden />
+                                            <input name="Quantity" id="Quantity" type="number" value="1" hidden>
+                                            <button class="btn" type="submit">Add to cart</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -97,13 +157,18 @@
                                     <!-- Item details -->
                                     <div class="item-dtls">
                                         <!-- product title -->
-                                        <h4><a href="#">@Model.Products.ElementAt(2).Brand @Model.Products.ElementAt(2).Model </a></h4>
+                                        <h4><a asp-controller="Products" asp-action="Details" asp-route-id="@Model.Products.ElementAt(2).Id">@Model.Products.ElementAt(2).Brand @Model.Products.ElementAt(2).Model </a></h4>
                                         <!-- price -->
                                         <span class="price lblue">₪@Model.Products.ElementAt(2).Price</span>
                                     </div>
                                     <!-- add to cart btn -->
                                     <div class="ecom bg-lblue">
-                                        <a class="btn" href="#">Add to cart</a>
+                                        <form asp-action="Create" asp-controller="ShoppingCart">
+                                            <input name="UserID" id="UserID" value="@UserManager.GetUserId(User)" hidden />
+                                            <input name="ProductID" id="ProductID" value="@Model.Products.ElementAt(2).Id" hidden />
+                                            <input name="Quantity" id="Quantity" type="number" value="1" hidden>
+                                            <button class="btn" type="submit">Add to cart</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -116,13 +181,18 @@
                                     <!-- Item details -->
                                     <div class="item-dtls">
                                         <!-- product title -->
-                                        <h4><a href="#">@Model.Products.ElementAt(3).Brand @Model.Products.ElementAt(3).Model </a></h4>
+                                        <h4><a asp-controller="Products" asp-action="Details" asp-route-id="@Model.Products.ElementAt(3).Id">@Model.Products.ElementAt(3).Brand @Model.Products.ElementAt(3).Model </a></h4>
                                         <!-- price -->
                                         <span class="price lblue">₪@Model.Products.ElementAt(3).Price</span>
                                     </div>
                                     <!-- add to cart btn -->
                                     <div class="ecom bg-lblue">
-                                        <a class="btn" href="#">Add to cart</a>
+                                        <form asp-action="Create" asp-controller="ShoppingCart">
+                                            <input name="UserID" id="UserID" value="@UserManager.GetUserId(User)" hidden />
+                                            <input name="ProductID" id="ProductID" value="@Model.Products.ElementAt(3).Id" hidden />
+                                            <input name="Quantity" id="Quantity" type="number" value="1" hidden>
+                                            <button class="btn" type="submit">Add to cart</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -142,13 +212,18 @@
                                     <!-- Item details -->
                                     <div class="item-dtls">
                                         <!-- product title -->
-                                        <h4><a href="#">@Model.Products.ElementAt(4).Brand @Model.Products.ElementAt(4).Model </a></h4>
+                                        <h4><a asp-controller="Products" asp-action="Details" asp-route-id="@Model.Products.ElementAt(4).Id">@Model.Products.ElementAt(4).Brand @Model.Products.ElementAt(4).Model </a></h4>
                                         <!-- price -->
                                         <span class="price lblue">₪@Model.Products.ElementAt(4).Price</span>
                                     </div>
                                     <!-- add to cart btn -->
                                     <div class="ecom bg-lblue">
-                                        <a class="btn" href="#">Add to cart</a>
+                                        <form asp-action="Create" asp-controller="ShoppingCart">
+                                            <input name="UserID" id="UserID" value="@UserManager.GetUserId(User)" hidden />
+                                            <input name="ProductID" id="ProductID" value="@Model.Products.ElementAt(4).Id" hidden />
+                                            <input name="Quantity" id="Quantity" type="number" value="1" hidden>
+                                            <button class="btn" type="submit">Add to cart</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -162,13 +237,18 @@
                                     <!-- Item details -->
                                     <div class="item-dtls">
                                         <!-- product title -->
-                                        <h4><a href="#">@Model.Products.ElementAt(5).Brand @Model.Products.ElementAt(5).Model </a></h4>
+                                        <h4><a asp-controller="Products" asp-action="Details" asp-route-id="@Model.Products.ElementAt(5).Id">@Model.Products.ElementAt(5).Brand @Model.Products.ElementAt(5).Model </a></h4>
                                         <!-- price -->
                                         <span class="price lblue">₪@Model.Products.ElementAt(5).Price</span>
                                     </div>
                                     <!-- add to cart btn -->
                                     <div class="ecom bg-lblue">
-                                        <a class="btn" href="#">Add to cart</a>
+                                        <form asp-action="Create" asp-controller="ShoppingCart">
+                                            <input name="UserID" id="UserID" value="@UserManager.GetUserId(User)" hidden />
+                                            <input name="ProductID" id="ProductID" value="@Model.Products.ElementAt(5).Id" hidden />
+                                            <input name="Quantity" id="Quantity" type="number" value="1" hidden>
+                                            <button class="btn" type="submit">Add to cart</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -181,13 +261,18 @@
                                     <!-- Item details -->
                                     <div class="item-dtls">
                                         <!-- product title -->
-                                        <h4><a href="#">@Model.Products.ElementAt(6).Brand @Model.Products.ElementAt(6).Model </a></h4>
+                                        <h4><a asp-controller="Products" asp-action="Details" asp-route-id="@Model.Products.ElementAt(6).Id">@Model.Products.ElementAt(6).Brand @Model.Products.ElementAt(6).Model </a></h4>
                                         <!-- price -->
                                         <span class="price lblue">₪@Model.Products.ElementAt(6).Price</span>
                                     </div>
                                     <!-- add to cart btn -->
                                     <div class="ecom bg-lblue">
-                                        <a class="btn" href="#">Add to cart</a>
+                                        <form asp-action="Create" asp-controller="ShoppingCart">
+                                            <input name="UserID" id="UserID" value="@UserManager.GetUserId(User)" hidden />
+                                            <input name="ProductID" id="ProductID" value="@Model.Products.ElementAt(6).Id" hidden />
+                                            <input name="Quantity" id="Quantity" type="number" value="1" hidden>
+                                            <button class="btn" type="submit">Add to cart</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -200,13 +285,18 @@
                                     <!-- Item details -->
                                     <div class="item-dtls">
                                         <!-- product title -->
-                                        <h4><a href="#">@Model.Products.ElementAt(7).Brand @Model.Products.ElementAt(7).Model </a></h4>
+                                        <h4><a asp-controller="Products" asp-action="Details" asp-route-id="@Model.Products.ElementAt(7).Id">@Model.Products.ElementAt(7).Brand @Model.Products.ElementAt(7).Model </a></h4>
                                         <!-- price -->
                                         <span class="price lblue">₪@Model.Products.ElementAt(7).Price</span>
                                     </div>
                                     <!-- add to cart btn -->
                                     <div class="ecom bg-lblue">
-                                        <a class="btn" href="#">Add to cart</a>
+                                        <form asp-action="Create" asp-controller="ShoppingCart">
+                                            <input name="UserID" id="UserID" value="@UserManager.GetUserId(User)" hidden />
+                                            <input name="ProductID" id="ProductID" value="@Model.Products.ElementAt(7).Id" hidden />
+                                            <input name="Quantity" id="Quantity" type="number" value="1" hidden>
+                                            <button class="btn" type="submit">Add to cart</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -226,13 +316,18 @@
                                     <!-- Item details -->
                                     <div class="item-dtls">
                                         <!-- product title -->
-                                        <h4><a href="#">@Model.Products.ElementAt(8).Brand @Model.Products.ElementAt(8).Model </a></h4>
+                                        <h4><a asp-controller="Products" asp-action="Details" asp-route-id="@Model.Products.ElementAt(8).Id">@Model.Products.ElementAt(8).Brand @Model.Products.ElementAt(8).Model </a></h4>
                                         <!-- price -->
                                         <span class="price lblue">₪@Model.Products.ElementAt(8).Price</span>
                                     </div>
                                     <!-- add to cart btn -->
                                     <div class="ecom bg-lblue">
-                                        <a class="btn" href="#">Add to cart</a>
+                                        <form asp-action="Create" asp-controller="ShoppingCart">
+                                            <input name="UserID" id="UserID" value="@UserManager.GetUserId(User)" hidden />
+                                            <input name="ProductID" id="ProductID" value="@Model.Products.ElementAt(8).Id" hidden />
+                                            <input name="Quantity" id="Quantity" type="number" value="1" hidden>
+                                            <button class="btn" type="submit">Add to cart</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -245,13 +340,18 @@
                                     <!-- Item details -->
                                     <div class="item-dtls">
                                         <!-- product title -->
-                                        <h4><a href="#">@Model.Products.ElementAt(9).Brand @Model.Products.ElementAt(9).Model </a></h4>
+                                        <h4><a asp-controller="Products" asp-action="Details" asp-route-id="@Model.Products.ElementAt(9).Id">@Model.Products.ElementAt(9).Brand @Model.Products.ElementAt(9).Model </a></h4>
                                         <!-- price -->
                                         <span class="price lblue">₪@Model.Products.ElementAt(9).Price</span>
                                     </div>
                                     <!-- add to cart btn -->
                                     <div class="ecom bg-lblue">
-                                        <a class="btn" href="#">Add to cart</a>
+                                        <form asp-action="Create" asp-controller="ShoppingCart">
+                                            <input name="UserID" id="UserID" value="@UserManager.GetUserId(User)" hidden />
+                                            <input name="ProductID" id="ProductID" value="@Model.Products.ElementAt(9).Id" hidden />
+                                            <input name="Quantity" id="Quantity" type="number" value="1" hidden>
+                                            <button class="btn" type="submit">Add to cart</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -264,13 +364,18 @@
                                     <!-- Item details -->
                                     <div class="item-dtls">
                                         <!-- product title -->
-                                        <h4><a href="#">@Model.Products.ElementAt(10).Brand @Model.Products.ElementAt(10).Model </a></h4>
+                                        <h4><a asp-controller="Products" asp-action="Details" asp-route-id="@Model.Products.ElementAt(10).Id">@Model.Products.ElementAt(10).Brand @Model.Products.ElementAt(10).Model </a></h4>
                                         <!-- price -->
                                         <span class="price lblue">₪@Model.Products.ElementAt(10).Price</span>
                                     </div>
                                     <!-- add to cart btn -->
                                     <div class="ecom bg-lblue">
-                                        <a class="btn" href="#">Add to cart</a>
+                                        <form asp-action="Create" asp-controller="ShoppingCart">
+                                            <input name="UserID" id="UserID" value="@UserManager.GetUserId(User)" hidden />
+                                            <input name="ProductID" id="ProductID" value="@Model.Products.ElementAt(10).Id" hidden />
+                                            <input name="Quantity" id="Quantity" type="number" value="1" hidden>
+                                            <button class="btn" type="submit">Add to cart</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -282,13 +387,18 @@
                                     <!-- Item details -->
                                     <div class="item-dtls">
                                         <!-- product title -->
-                                        <h4><a href="#">@Model.Products.ElementAt(11).Brand @Model.Products.ElementAt(11).Model </a></h4>
+                                        <h4><a asp-controller="Products" asp-action="Details" asp-route-id="@Model.Products.ElementAt(11).Id">@Model.Products.ElementAt(11).Brand @Model.Products.ElementAt(11).Model </a></h4>
                                         <!-- price -->
                                         <span class="price lblue">₪@Model.Products.ElementAt(11).Price</span>
                                     </div>
                                     <!-- add to cart btn -->
                                     <div class="ecom bg-lblue">
-                                        <a class="btn" href="#">Add to cart</a>
+                                        <form asp-action="Create" asp-controller="ShoppingCart">
+                                            <input name="UserID" id="UserID" value="@UserManager.GetUserId(User)" hidden />
+                                            <input name="ProductID" id="ProductID" value="@Model.Products.ElementAt(11).Id" hidden />
+                                            <input name="Quantity" id="Quantity" type="number" value="1" hidden>
+                                            <button class="btn" type="submit">Add to cart</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -305,5 +415,12 @@
 
             </div>
         </div>
+    </div>
+</div>
+
+<div class="container bootstrap snippets bootdey">
+    <h1 class="nav-link text-dark">  Technology news feed </h1>
+    <link rel="stylesheet" href="~/css/API.css" />
+    <div class="row" id="FatherRow">
     </div>
 </div>

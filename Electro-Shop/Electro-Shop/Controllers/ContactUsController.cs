@@ -15,30 +15,70 @@ namespace Electro_Shop.Controllers
     public class ContactUsController : Controller
     {
         private readonly ILogger<ContactUsController> _logger;
-        private readonly ContactUsContext _context;
+        private readonly BranchContext _context;
+        private readonly ContactUsContext _Contactcontext;
 
 
-        public ContactUsController(ILogger<ContactUsController> logger)
+        public ContactUsController(ILogger<ContactUsController> logger, BranchContext context, ContactUsContext Ccontext)
         {
             _logger = logger;
+            _context = context;
+            _Contactcontext = Ccontext;
+
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
+        {
+            if (User.IsInRole("Admin"))
+            {
+                return Redirect("Admin/Messages");
+            }
+            else
+            {
+                var _Branches = new List<Branch>();
+                _Branches = await _context.branches.ToListAsync();
+                var _Submit = new ContactUsSubmit();
+                var _ContactUsPage = new ContactUs
+                {
+                    Branches = _Branches,
+                    Submit = _Submit
+                };
+                return View(_ContactUsPage);
+            }
+        }
+
+        public async Task<IActionResult> List()
+        {
+            return View(await _Contactcontext.ContactUsSubmit.ToListAsync());
+        }
+
+        public IActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Index([Bind("FirstName,LastName,Phone,Email,IssueWith")] ContactUsSubmit contact)
+        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,PhoneNumber,Email,IssueWith")] ContactUsSubmit submit)
         {
+
             if (ModelState.IsValid)
             {
-                _context.Add(contact);
-                await _context.SaveChangesAsync();
+                //var submits = _Contactcontext.ContactUsSubmit.ToList();
+                _Contactcontext.Add(submit);
+                //var submits2 = _Contactcontext.ContactUsSubmit.ToList();
+                await _Contactcontext.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View();
+            var _Branches = new List<Branch>();
+            _Branches = await _context.branches.ToListAsync();
+            var _Submit = new ContactUsSubmit();
+            var _ContactUsPage = new ContactUs
+            {
+                Branches = _Branches,
+                Submit = _Submit
+            };
+            return View("Index", _ContactUsPage);
         }
     }
 }

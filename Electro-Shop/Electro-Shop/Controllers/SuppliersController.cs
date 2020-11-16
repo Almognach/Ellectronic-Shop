@@ -22,7 +22,14 @@ namespace Electro_Shop.Controllers
         // GET: Suppliers
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Supplier.ToListAsync());
+            if (User.IsInRole("Admin"))
+            {
+                return Redirect("Admin/Suppliers");
+            }
+            else
+            {
+                return View(await _context.Supplier.ToListAsync());
+            }
         }
 
         // GET: Suppliers/Details/5

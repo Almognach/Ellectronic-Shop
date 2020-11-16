@@ -7,43 +7,52 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Electro_Shop.Data;
 using Electro_Shop.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Electro_Shop.Controllers
 {
     public class CategoriesController : Controller
     {
-        private readonly CategoryContext _context;
+        private readonly ProductContext _Productcontext;
 
-        public CategoriesController(CategoryContext context)
+        public CategoriesController(ProductContext context)
         {
-            _context = context;
+            _Productcontext = context;
         }
 
         // GET: Categories
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Category.ToListAsync());
+            if (User.IsInRole("Admin"))
+            {
+                return Redirect("Admin/Categories");
+            } else
+            {
+                return View(await _Productcontext.Category.ToListAsync());
+            }
         }
 
-        // GET: Categories/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+        //// GET: Categories/Details/5
+        //[AdminAuthorizationRequirement]
+        //public async Task<IActionResult> Details(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            var category = await _context.Category
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (category == null)
-            {
-                return NotFound();
-            }
+        //    var category = await _context.Category
+        //        .FirstOrDefaultAsync(m => m.Id == id);
+        //    if (category == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return View(category);
-        }
+        //    return View(category);
+        //}
 
         // GET: Categories/Create
+        [AdminAuthorizationRequirement]
         public IActionResult Create()
         {
             return View();
@@ -52,20 +61,22 @@ namespace Electro_Shop.Controllers
         // POST: Categories/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [AdminAuthorizationRequirement]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name")] Category category)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(category);
-                await _context.SaveChangesAsync();
+                _Productcontext.Add(category);
+                await _Productcontext.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(category);
         }
 
         // GET: Categories/Edit/5
+        [AdminAuthorizationRequirement]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,7 +84,7 @@ namespace Electro_Shop.Controllers
                 return NotFound();
             }
 
-            var category = await _context.Category.FindAsync(id);
+            var category = await _Productcontext.Category.FindAsync(id);
             if (category == null)
             {
                 return NotFound();
@@ -84,6 +95,7 @@ namespace Electro_Shop.Controllers
         // POST: Categories/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [AdminAuthorizationRequirement]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name")] Category category)
@@ -97,8 +109,8 @@ namespace Electro_Shop.Controllers
             {
                 try
                 {
-                    _context.Update(category);
-                    await _context.SaveChangesAsync();
+                    _Productcontext.Update(category);
+                    await _Productcontext.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -117,6 +129,7 @@ namespace Electro_Shop.Controllers
         }
 
         // GET: Categories/Delete/5
+        [AdminAuthorizationRequirement]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,7 +137,7 @@ namespace Electro_Shop.Controllers
                 return NotFound();
             }
 
-            var category = await _context.Category
+            var category = await _Productcontext.Category
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (category == null)
             {
@@ -135,19 +148,50 @@ namespace Electro_Shop.Controllers
         }
 
         // POST: Categories/Delete/5
+        [AdminAuthorizationRequirement]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var category = await _context.Category.FindAsync(id);
-            _context.Category.Remove(category);
-            await _context.SaveChangesAsync();
+            var category = await _Productcontext.Category.FindAsync(id);
+            _Productcontext.Category.Remove(category);
+            await _Productcontext.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool CategoryExists(int id)
         {
-            return _context.Category.Any(e => e.Id == id);
+            return _Productcontext.Category.Any(e => e.Id == id);
         }
+
+        public IActionResult ListProducts(int categoryId)
+        {
+
+            return RedirectToAction("Index", "Products", categoryId);
+        }
+
+        public async Task<IActionResult> List(int? id)
+        {
+
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var category = await _Productcontext.Category
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (category == null)
+            {
+                return NotFound();
+            }
+
+            var categoryProducts = new BestSeller();
+
+            var Categories = _Productcontext.Category.ToList();
+            categoryProducts.Category = category;
+
+            categoryProducts.Products = _Productcontext.Product.Where(x => x.CategoryId == category.Id).ToList();
+            return View(categoryProducts);
+        }
+
     }
 }

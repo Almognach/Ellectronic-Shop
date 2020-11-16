@@ -10,11 +10,11 @@
     },
     "mssql3": {
       "type": "mssql.local",
-      "connectionId": "SupplierContext"
+      "connectionId": "AuthDbContextConnection"
     },
     "mssql4": {
       "type": "mssql.local",
-      "connectionId": "BranchContext"
+      "connectionId": "SupplierContext"
     }
   }
-}
+  }

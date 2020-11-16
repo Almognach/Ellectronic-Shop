@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Administration Center</h1>
+<div class="col-md-6 col-sm-6">
+    <div class="panel panel-default">
+        <div class="panel-heading"><h4>Admin Controls</h4></div>
+        <div class="panel-body">
+            <div class="row">
+                <link rel="stylesheet" href="~/css/bestsellers.css" />
+                <div class="col-xs-4 col-md-3 col-lg-2"><a href="/Admin/Products" class="btn btn-default center-block">Products</a></div>
+                <div class="col-xs-4 col-md-3 col-lg-2"><a href="/Admin/Categories" class="btn btn-default center-block">Categories</a></div>
+                <div class="col-xs-4 col-md-3 col-lg-2"><a href="/Admin/Suppliers" class="btn btn-default center-block">Suppliers</a></div>
+                <!--<div class="col-xs-4 col-md-3 col-lg-2">-->@*<a href="/Admin/Users" class="btn btn-default center-block">Users</a>*@<!--</div>-->
+                <div class="col-xs-4 col-md-3 col-lg-2"><a href="/Admin/Messages" class="btn btn-default center-block">Messages</a></div>
+                <div class="col-xs-4 col-md-3 col-lg-2"><a href="/Admin/Orders" class="btn btn-default center-block">Orders</a></div>
+            </div>
+            <hr>
+            <hr>
+        </div>
+    </div>
+</div>
