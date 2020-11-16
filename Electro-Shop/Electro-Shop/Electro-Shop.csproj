@@ -35,5 +35,6 @@
     <Folder Include="Views\ShoppingCart\" />
     <Folder Include="Views\Orders\" />
     <Folder Include="Views\Search\" />
+    <Folder Include="wwwroot\favicon\" />
   </ItemGroup>
 </Project>
