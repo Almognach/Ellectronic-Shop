@@ -34,6 +34,7 @@ namespace Electro_Shop.Controllers
 
         public IActionResult PastOrders()
         {
+
             var pastOrders = new PastOrdersView();
             pastOrders.UserID = _UserManager.GetUserId(User);
             pastOrders.OrdersView = new List<OrderView>();
