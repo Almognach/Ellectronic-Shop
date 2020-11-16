@@ -86,7 +86,7 @@ namespace Electro_Shop.Controllers
                                          {
                                              p.productId,
                                              p.count,
-                                             c.Category.Id
+                                             c.CategoryId
                                          }).ToList();
 
             //5 top Categories ID's from you past order lines
@@ -96,7 +96,7 @@ namespace Electro_Shop.Controllers
              {
                 p.productId,
                 p.count,
-                 categoryId = c.Category.Id
+                 categoryId = c.CategoryId
              }).GroupBy(x => x.categoryId, (key, group) => new { CategoryId = key, count = group.Sum(x => x.count) })
              .OrderByDescending(x => x.count).Take(5).ToList();
 
@@ -104,7 +104,7 @@ namespace Electro_Shop.Controllers
             foreach (var category in topCategories)
             {
                 var allByCategoryList = _ProductContext.Product
-                    .Where(x => x.Category.Id == category.CategoryId)
+                    .Where(x => x.CategoryId == category.CategoryId)
                     .OrderByDescending(x => x.SalesCounter)
                     .ToList();
 
