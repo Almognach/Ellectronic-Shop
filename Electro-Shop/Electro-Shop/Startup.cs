@@ -44,11 +44,11 @@ namespace Electro_Shop
                     //options.ClientSecret = Configuration["App:GoogleClientSecret"];
                 })
 
-                //.AddFacebook(option =>
-                //{
-                //    option.AppId = Configuration["App:FacebookClientId"];
-                //    option.ClientSecret = Configuration["App:FacebookClientSecret"];
-                //})
+                .AddFacebook(option =>
+                {
+                    option.AppId = "660793164615466";
+                    option.ClientSecret = "35a8d870aa65a410d50f33e9a1bff560";
+                })
 
             //.AddFacebook(option =>
             //{
