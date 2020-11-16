@@ -19,7 +19,7 @@ namespace Electro_Shop.Controllers
         private readonly ContactUsContext _Contactcontext;
 
 
-        public ContactUsController(ILogger<ContactUsController> logger, BranchContext context,ContactUsContext Ccontext)
+        public ContactUsController(ILogger<ContactUsController> logger, BranchContext context, ContactUsContext Ccontext)
         {
             _logger = logger;
             _context = context;
@@ -29,15 +29,22 @@ namespace Electro_Shop.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var _Branches = new List<Branch>();
-            _Branches = await _context.branches.ToListAsync();
-            var _Submit = new ContactUsSubmit();
-            var _ContactUsPage = new ContactUs
+            if (User.IsInRole("Admin"))
             {
-                Branches = _Branches,
-                Submit = _Submit
-            };
-            return View(_ContactUsPage);
+                return Redirect("Admin/Messages");
+            }
+            else
+            {
+                var _Branches = new List<Branch>();
+                _Branches = await _context.branches.ToListAsync();
+                var _Submit = new ContactUsSubmit();
+                var _ContactUsPage = new ContactUs
+                {
+                    Branches = _Branches,
+                    Submit = _Submit
+                };
+                return View(_ContactUsPage);
+            }
         }
 
         public async Task<IActionResult> List()
@@ -57,7 +64,7 @@ namespace Electro_Shop.Controllers
 
             if (ModelState.IsValid)
             {
-                 //var submits = _Contactcontext.ContactUsSubmit.ToList();
+                //var submits = _Contactcontext.ContactUsSubmit.ToList();
                 _Contactcontext.Add(submit);
                 //var submits2 = _Contactcontext.ContactUsSubmit.ToList();
                 await _Contactcontext.SaveChangesAsync();
