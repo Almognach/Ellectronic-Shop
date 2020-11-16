@@ -37,8 +37,8 @@ namespace Electro_Shop
             services.AddAuthentication()
                 .AddGoogle(options =>
                 {
-                    options.ClientId = "739483181872-c1halhl6d1gl3424aseh9m0jfjedb3if.apps.googleusercontent.com";
-                    options.ClientSecret = "uP8CW3CH5c-xT0TMtZnsH2Z_";
+                    options.ClientId = "739483181872-9pqf68eioph3gk2khvghsbcrc9na1qd7.apps.googleusercontent.com";
+                    options.ClientSecret = "eEwSlQuXGP3THT0feuuDSOav";
 
                     //options.ClientId = Configuration["App:GoogleClientId"];
                     //options.ClientSecret = Configuration["App:GoogleClientSecret"];
