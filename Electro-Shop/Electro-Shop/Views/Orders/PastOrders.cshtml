@@ -70,7 +70,7 @@
                                                 </p>
                                                 <hr>
                                                 <div class="float-right">
-                                                    <a class="btn btn-sm btn-primary" asp-controller="Orders" asp-action="Reorder" name="id" id="id" asp-route-id="@order.Order.OrderID"><i class="icofont-refresh"></i> REORDER</a>
+                                                    <a class="btn btn-sm btn-primary" asp-controller="Orders" asp-action="Reorder" name="id" id="id" asp-route-id="@order.Order.OrderID"><i class="icofont-refresh"></i> Buy Again</a>
                                                 </div>
                                                 <p class="mb-0 text-black text-primary pt-2">
                                                     <span class="text-black font-weight-bold"> Total Paid:</span> ₪@order.PricePaid
@@ -95,10 +95,10 @@
 else
 {
     <div>
-        Please Login or regsiter to view your shopping cart
-        <a class="nav-link text-dark" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
+        Please Login or regsiter to view your past orders
+        <a style="background-color:#32c8de" class="nav-link text-dark" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
         <br />
-        <a class="nav-link text-dark" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
+        <a style="background-color:#32c8de"class="nav-link text-dark" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
     </div>
 
 }
