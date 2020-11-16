@@ -80,11 +80,11 @@
                             </div>
                         }
 
-                    <div class="ibox-content">
-                        <a class="btn btn-white" asp-controller="Home" asp-action="Index"><i class="fa fa-arrow-left"></i> Continue Shopping</a>
-                        <a class="btn btn-primary pull-right" asp-action="CheckOut"><i class="fa fa-shopping-cart"></i> Checkout</a>
+                        <div class="ibox-content">
+                            <a class="btn btn-white" asp-controller="Home" asp-action="Index"><i class="fa fa-arrow-left"></i> Continue Shopping</a>
+                            <a class="btn btn-primary pull-right" asp-action="CheckOut"><i class="fa fa-shopping-cart"></i> Checkout</a>
 
-                    </div>
+                        </div>
                     </div>
 
                 </div>
@@ -107,7 +107,7 @@
                             </span>
                             <div class="m-t-sm">
                                 <div class="btn-group">
-                                    <a class="btn btn-primary btn-sm" asp-action="CheckOut" ><i class="fa fa-shopping-cart"></i> Checkout</a>
+                                    <a class="btn btn-primary btn-sm" asp-action="CheckOut"><i class="fa fa-shopping-cart"></i> Checkout</a>
                                 </div>
                             </div>
                         </div>
@@ -140,12 +140,17 @@
 
 else
 {
-<div>
-    Please Login or regsiter to view your shopping cart
-    <a class="nav-link text-dark" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
-    <br />
-    <a class="nav-link text-dark" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
-</div>
-    
+    {
+        <div>
+            Please Login or regsiter to view your shopping cart
+            <a style="background-color:#32c8de" class="nav-link text-dark" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
+            <br />
+            <a style="background-color:#32c8de" class="nav-link text-dark" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
+        </div>
+
+    }
+
+
+
 }
 
